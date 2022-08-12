@@ -3,14 +3,16 @@ import Form from "react-bootstrap/Form";
 
 function Login() {
   return (
+    <div className="login">
     <Form>
-      <Form.Group>
-        <input type="email" name="email" placeholder="email" />
+      <Form.Group className="mb-3">
+        <Form.Control type="email" name="email" placeholder="email" />
       </Form.Group>
       <Form.Group>
-        <input type="password" name="password" placeholder="password" />
+        <Form.Control type="password" name="password" placeholder="password" />
       </Form.Group>
     </Form>
+    </div>
   );
 }
 
