@@ -10,6 +10,17 @@ function Header() {
       <h1>Header :)</h1>
 
       <Button
+        variant="danger"
+        onClick={() => {
+          navigate("/", {
+            replace: true,
+          });
+        }}
+      >
+        Home (temp.)
+      </Button>
+
+      <Button
         variant="primary"
         onClick={() => {
           navigate("/login", {
