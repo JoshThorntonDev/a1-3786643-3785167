@@ -13,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element='root' />
           <Route path="/login" element={<Login/>} />
+          <Route path="*" element='404 Page Here' />
         </Routes>
       </div>
       <Footer />
