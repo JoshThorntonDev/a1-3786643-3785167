@@ -34,12 +34,18 @@ function Login({login}) {
   return (
     <Form className="mb-3 loginForm" onSubmit={attemptLogin}>
       <h1 className="mb-3 d-flex justify-content-center">Sign In</h1>
+      {error && ( // show when there is an error
+        <Alert variant="danger" onClose={() => setError(false)} dismissible>
+          Your email and/or password did not match
+        </Alert>
+      )}
       <FloatingLabel label="Email address" className="mb-3">
         <Form.Control
           type="email"
           name="email"
           placeholder="email@example.com"
           value={email}
+          required
           onChange={(event) => {
             setEmail(event.target.value);
           }}
@@ -52,16 +58,13 @@ function Login({login}) {
           name="password"
           placeholder="Password here"
           value={password}
+          required
           onChange={(event) => {
             setPassword(event.target.value);
           }}
         />
       </FloatingLabel>
-      {error && ( // show when there is an error
-        <Alert variant="danger" onClose={() => setError(false)} dismissible>
-          Your email and/or password did not match
-        </Alert>
-      )}
+
       <div className="d-flex justify-content-center">
         <Button variant="primary" type="submit">
           Login
