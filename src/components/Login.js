@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 const USERNAME = "test@email.com";
 const PASSWORD = "password1";
 
-function Login() {
+function Login({login}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -24,7 +24,7 @@ function Login() {
     e.preventDefault(); // prevent form from submitting automatically
 
     if (email === USERNAME && password === PASSWORD) {
-      alert("Logged in, redirecting");
+      login(email);
       navigate("/", { replace: true });
     } else {
       setError(true);
