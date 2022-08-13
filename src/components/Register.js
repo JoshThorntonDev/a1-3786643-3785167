@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 function Register() {
     return (
         <div className="register">
-            <h1>Sign Up</h1>
+            <h2>Sign Up</h2>
         <Form>
         <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>
