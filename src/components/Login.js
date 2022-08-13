@@ -16,7 +16,7 @@ const PASSWORD = "password1";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
 
   const attemptLogin = (e) => {
     setError(""); // clear error in case user has set it already
@@ -25,7 +25,7 @@ function Login() {
     if (email === USERNAME && password === PASSWORD) {
       alert("Logged in");
     } else {
-      alert("Failure");
+      setError(true);
     }
   };
 
@@ -55,6 +55,11 @@ function Login() {
           }}
         />
       </FloatingLabel>
+      {error && ( // show when there is an error
+        <Alert variant="danger" onClose={() => setError(false)} dismissible>
+          Your email and/or password did not match
+        </Alert>
+      )}
       <div className="d-flex justify-content-center">
         <Button variant="primary" type="submit">
           Login
