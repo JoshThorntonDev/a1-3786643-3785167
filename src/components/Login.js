@@ -17,13 +17,15 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   const attemptLogin = (e) => {
     setError(""); // clear error in case user has set it already
     e.preventDefault(); // prevent form from submitting automatically
 
     if (email === USERNAME && password === PASSWORD) {
-      alert("Logged in");
+      alert("Logged in, redirecting");
+      navigate("/", { replace: true });
     } else {
       setError(true);
     }
