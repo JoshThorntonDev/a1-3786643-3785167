@@ -1,13 +1,4 @@
-.header {
-    background-color: rgb(44, 44, 44);
-    color:white;
-    padding:1vh;
-
-    
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.header h1 {
-    margin:0
+.headerNav button {
+    margin-right: 5px;
+    margin-left: 5px;
 }
