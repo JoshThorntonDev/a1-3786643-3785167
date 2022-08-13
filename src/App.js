@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element='root' />
           <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Register/>} />
           <Route path="*" element='404 Page Here' />
         </Routes>
       </div>
