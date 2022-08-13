@@ -20,7 +20,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header logout={logout} currentUser={currentUser}/>
       <div className="container">
         <Routes>
           <Route path="/" element={currentUser} />

@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { useNavigate } from "react-router-dom";
 
-function Header() {
+function Header({logout, currentUser}) {
   const navigate = useNavigate();
 
   return (
@@ -25,27 +25,41 @@ function Header() {
             Home (temp.)
           </Button>
 
-          <Button
-            variant="primary"
-            onClick={() => {
-              navigate("/register", {
-                replace: true,
-              });
-            }}
-          >
-            Sign Up
-          </Button>
-
-          <Button
-            variant="primary"
-            onClick={() => {
-              navigate("/login", {
-                replace: true,
-              });
-            }}
-          >
-            Login
-          </Button>
+          {currentUser ? (
+            <Button
+              onClick={() => {
+                logout();
+                navigate("/", {
+                  replace: true,
+                });
+              }}
+            >
+              Logout
+            </Button>
+          ) : (
+            <div>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  navigate("/login", {
+                    replace: true,
+                  });
+                }}
+              >
+                Login
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  navigate("/register", {
+                    replace: true,
+                  });
+                }}
+              >
+                Sign Up
+              </Button>
+            </div>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
