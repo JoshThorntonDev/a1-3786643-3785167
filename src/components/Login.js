@@ -3,8 +3,9 @@ import "./Login.css";
 // bootstrap for styling
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { FloatingLabel } from "react-bootstrap";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Alert from "react-bootstrap/Alert";
+import Collapse from "react-bootstrap/Collapse";
 
 // react components for functionality
 import { useState } from "react";
@@ -13,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 const USERNAME = "test@email.com";
 const PASSWORD = "password1";
 
-function Login({login}) {
+function Login({ login }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -34,11 +35,14 @@ function Login({login}) {
   return (
     <Form className="mb-3 loginForm" onSubmit={attemptLogin}>
       <h1 className="mb-3 d-flex justify-content-center">Sign In</h1>
-      {error && ( // show when there is an error
-        <Alert variant="danger" onClose={() => setError(false)} dismissible>
-          Your email and/or password did not match
-        </Alert>
-      )}
+      <Collapse in={error}>
+        <div>
+          <Alert variant="danger" onClose={() => setError(false)} dismissible>
+            Your email and/or password did not match
+          </Alert>
+        </div>
+      </Collapse>
+
       <FloatingLabel label="Email address" className="mb-3">
         <Form.Control
           type="email"
