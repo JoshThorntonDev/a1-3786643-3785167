@@ -4,8 +4,8 @@ import "./Login.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Alert from "react-bootstrap/Alert";
-import Collapse from "react-bootstrap/Collapse";
+
+import AnimatedAlert from "./AnimatedAlert"
 
 // react components for functionality
 import { useState } from "react";
@@ -35,13 +35,10 @@ function Login({ login }) {
   return (
     <Form className="mb-3 loginForm" onSubmit={attemptLogin}>
       <h1 className="mb-3 d-flex justify-content-center">Sign In</h1>
-      <Collapse in={error}>
-        <div>
-          <Alert variant="danger" onClose={() => setError(false)} dismissible>
-            Your email and/or password did not match
-          </Alert>
-        </div>
-      </Collapse>
+
+      <AnimatedAlert variant="danger" message="Your email and/or password did not match" display={error} setDisplay={setError}/>
+      
+
 
       <FloatingLabel label="Email address" className="mb-3">
         <Form.Control

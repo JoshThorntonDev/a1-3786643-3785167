@@ -2,8 +2,8 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Alert from "react-bootstrap/Alert";
-import Collapse from "react-bootstrap/Collapse";
+
+import AnimatedAlert from "./AnimatedAlert"
 
 //react components
 import { useState } from "react";
@@ -43,13 +43,9 @@ function Register() {
   return (
     <Form className="mb-3 loginForm" onSubmit={handleSubmit}>
       <h1 className="mb-3 d-flex justify-content-center">Sign Up</h1>
-      <Collapse in={error}>
-        <div>
-          <Alert variant="danger" onClose={() => setError(false)} dismissible>
-            {error}
-          </Alert>
-        </div>
-      </Collapse>
+
+      <AnimatedAlert variant="danger" message={error} display={error} setDisplay={setError}/>
+
       <FloatingLabel label="Name" className="mb-3">
         <Form.Control
           type="text"
