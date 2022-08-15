@@ -1,0 +1,8 @@
+.carousel-caption {
+  border-radius: 1em;
+  background: rgba(74, 74, 74, 0.75) 0%;
+}
+
+.carousel {
+  width: 80%; /* the size of images used changes what this value needs to be, 1470x980 images look decent with 80%, bigger images will need a smaller width */
+}

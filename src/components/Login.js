@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
-import AnimatedAlert from "./AnimatedAlert"
+import AnimatedAlert from "./AnimatedAlert";
 
 // react components for functionality
 import { useState } from "react";
@@ -36,9 +36,12 @@ function Login({ login }) {
     <Form className="mb-3 loginForm" onSubmit={attemptLogin}>
       <h1 className="mb-3 d-flex justify-content-center">Sign In</h1>
 
-      <AnimatedAlert variant="danger" message="Your email and/or password did not match" display={error} setDisplay={setError}/>
-      
-
+      <AnimatedAlert
+        variant="danger"
+        message="Your email and/or password did not match"
+        display={error}
+        setDisplay={setError}
+      />
 
       <FloatingLabel label="Email address" className="mb-3">
         <Form.Control

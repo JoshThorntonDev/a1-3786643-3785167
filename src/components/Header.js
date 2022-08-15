@@ -5,13 +5,13 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { useNavigate } from "react-router-dom";
 
-function Header({logout, currentUser}) {
+function Header({ logout, currentUser }) {
   const navigate = useNavigate();
 
   return (
     <Navbar className="headerNav" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand>Website Name</Navbar.Brand>
+        <Navbar.Brand>Loop Agile Now</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
           <Button
