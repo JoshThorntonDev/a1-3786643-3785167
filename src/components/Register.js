@@ -4,30 +4,38 @@ import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 import AnimatedAlert from "./AnimatedAlert"
+import {insertUser } from "../data/Repository.js";
 
 //react components
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState(
+    {
+      name: "",
+      email: "",
+      password: "",
+    });
   const [error, setError] = useState("");
+
+  const handleInputChange = (event) => {
+    setUser({ ...user, [event.target.name]: event.target.value });
+  }
 
   const handleSubmit = (e) => {
     setError(""); //clear error
     e.preventDefault(); //prevent form from submitting automatically
 
-    if (!name) {
+     if (!user.name) {
       setError("Name is a required field");
       return;
     }
-    if (!email) {
+    if (!user.email) {
       setError("Email is a required field");
       return;
     }
-    if (!password) {
+    if (!user.password) {
       setError("Password is a required field");
       return;
     }
@@ -35,8 +43,15 @@ function Register() {
 
     //if details pass all validation, save the new user to localstorage
     //and log them in, just using setError for now to test form submission
+
+    //After passing validation, set user details to user variable
+
+    //Insert user into local storage
+
+    insertUser(user);
+    
     setError(
-      "Success! Name: " + name + " Email: " + email + " Password: " + password
+      "Success! Name: " + user.name + " Email: " + user.email + " Password: " + user.password
     );
   };
 
@@ -51,10 +66,8 @@ function Register() {
           type="text"
           name="name"
           placeholder="name"
-          value={name}
-          onChange={(event) => {
-            setName(event.target.value);
-          }}
+          value={user.name}
+          onChange={handleInputChange}
         />
       </FloatingLabel>
       <FloatingLabel label="Email" className="mb-3">
@@ -62,10 +75,8 @@ function Register() {
           type="email"
           name="email"
           placeholder="email"
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
+          value={user.email}
+          onChange={handleInputChange}
         />
       </FloatingLabel>
       <FloatingLabel label="Password" className="mb-3">
@@ -73,10 +84,8 @@ function Register() {
           type="password"
           name="password"
           placeholder="password"
-          value={password}
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
+          value={user.password}
+          onChange={handleInputChange}
         />
       </FloatingLabel>
       <div className="d-flex justify-content-center">
