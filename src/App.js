@@ -28,7 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login login={login} />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register login={login} />} />
           <Route path="*" element="404 Page Here" />
         </Routes>
       </div>

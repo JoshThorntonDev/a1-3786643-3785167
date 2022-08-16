@@ -4,13 +4,13 @@ import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 import AnimatedAlert from "./AnimatedAlert"
-import {insertUser } from "../data/Repository.js";
+import { insertUser } from "../data/Repository.js";
 
 //react components
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Register() {
+function Register({ login }) {
   const [user, setUser] = useState(
     {
       name: "",
@@ -18,6 +18,7 @@ function Register() {
       password: "",
     });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value });
@@ -42,14 +43,11 @@ function Register() {
     //TODO: check if email is valid and password is strong
 
     //After passing validation, insert user into local storage
-
     insertUser(user);
-    
-    //if details pass all validation, save the new user to localstorage
-    //and log them in, just using setError for now to test form submission
-    setError(
-      "Success! Name: " + user.name + " Email: " + user.email + " Password: " + user.password
-    );
+
+    //Log the user in and redirect them
+    login(user.email);
+    navigate("/", { replace: true });
   };
 
   return (
