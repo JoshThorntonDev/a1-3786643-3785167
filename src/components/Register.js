@@ -17,7 +17,8 @@ function Register({ login }) {
       email: "",
       password: "",
     });
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
@@ -25,19 +26,24 @@ function Register({ login }) {
   }
 
   const handleSubmit = (e) => {
-    setError(""); //clear error
+    setError(false); //clear error
+    setMessage("") //clear message
+
     e.preventDefault(); //prevent form from submitting automatically
 
      if (!user.name) {
-      setError("Name is a required field");
+      setError(true);
+      setMessage("Name is a required field");
       return;
     }
     if (!user.email) {
-      setError("Email is a required field");
+      setError(true);
+      setMessage("Email is a required field");
       return;
     }
     if (!user.password) {
-      setError("Password is a required field");
+      setError(true);
+      setMessage("Password is a required field");
       return;
     }
     //TODO: check if email is valid and password is strong
@@ -54,7 +60,7 @@ function Register({ login }) {
     <Form className="mb-3 loginForm" onSubmit={handleSubmit}>
       <h1 className="mb-3 d-flex justify-content-center">Sign Up</h1>
 
-      <AnimatedAlert variant="danger" message={error} display={error} setDisplay={setError}/>
+      <AnimatedAlert variant="danger" message={message} display={error} setDisplay={setError}/>
 
       <FloatingLabel label="Name" className="mb-3">
         <Form.Control
