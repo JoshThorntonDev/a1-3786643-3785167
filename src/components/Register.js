@@ -41,15 +41,12 @@ function Register() {
     }
     //TODO: check if email is valid and password is strong
 
-    //if details pass all validation, save the new user to localstorage
-    //and log them in, just using setError for now to test form submission
-
-    //After passing validation, set user details to user variable
-
-    //Insert user into local storage
+    //After passing validation, insert user into local storage
 
     insertUser(user);
     
+    //if details pass all validation, save the new user to localstorage
+    //and log them in, just using setError for now to test form submission
     setError(
       "Success! Name: " + user.name + " Email: " + user.email + " Password: " + user.password
     );

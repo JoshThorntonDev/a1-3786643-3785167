@@ -6,6 +6,7 @@ function initUsers() {
     if(localStorage.getItem(USERS_KEY) !== null)
         return;
     
+    //Create empty users object if it doesn't already exist
     setUsers({});
 }
 
