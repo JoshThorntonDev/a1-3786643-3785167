@@ -16,6 +16,7 @@ function Register({ login }) {
       name: "",
       email: "",
       password: "",
+      date: "",
     });
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
@@ -49,6 +50,12 @@ function Register({ login }) {
     //TODO: check if email is valid and password is strong
 
     //After passing validation, insert user into local storage
+
+    //WIP NEED TO FORMAT DATE BETTER
+    const date = new Date();
+
+    user.date = date;
+
     insertUser(user);
 
     //Log the user in and redirect them
