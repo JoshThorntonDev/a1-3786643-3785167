@@ -7,10 +7,10 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 import AnimatedAlert from "./AnimatedAlert";
 
-import { getUsers } from "../data/Repository"
+import { getUsers } from "../data/Repository";
 
 // react components for functionality
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login({ login }) {
@@ -19,26 +19,32 @@ function Login({ login }) {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
   const users = getUsers();
-  
+
+  const passwordRef = useRef(null);
+  const emailRef = useRef(null);
 
   const attemptLogin = (e) => {
     setError(false); // clear error in case user has set it already
     e.preventDefault(); // prevent form from submitting automatically
-    
-    if(email in users && password === users[email]['password']) {
-      login(email)
-      navigate("/", { replace: true });
+
+    if (email in users) {
+      if (password === users[email]["password"]) {
+        login(email); // user successfully logged in
+        navigate("/", { replace: true }); // navigate somewhere afterwards
+      } else {
+        setError(true); // password is wrong
+        passwordRef.current.focus(); // focus on password input
+      }
     } else {
-      setError(true); // either email or password is wrong
+      setError(true); // email is wrong/doesnt exist
+      emailRef.current.focus(); // focus on email input
     }
-
-
   };
 
   return (
     <Form className="mb-3 loginForm" onSubmit={attemptLogin}>
       <h1 className="mb-3 d-flex justify-content-center">Sign In</h1>
-      
+
       <AnimatedAlert
         variant="danger"
         message="Sorry, your email and/or password did not match our records"
@@ -52,6 +58,7 @@ function Login({ login }) {
           name="email"
           placeholder="email@example.com"
           value={email}
+          ref={emailRef}
           required
           onChange={(event) => {
             setEmail(event.target.value);
@@ -65,6 +72,7 @@ function Login({ login }) {
           name="password"
           placeholder="Password here"
           value={password}
+          ref={passwordRef}
           required
           onChange={(event) => {
             setPassword(event.target.value);
