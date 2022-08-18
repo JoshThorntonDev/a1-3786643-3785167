@@ -51,7 +51,6 @@ function Register({ login }) {
 
     //After passing validation, insert user into local storage
 
-    //WIP NEED TO FORMAT DATE BETTER
     const date = new Date().toDateString();
 
     user.date = date;
