@@ -24,6 +24,16 @@ function Header({ logout, currentUser }) {
           >
             Home (temp.)
           </Button>
+          <Button
+                variant="primary"
+                onClick={() => {
+                  navigate("/profile", {
+                    replace: true,
+                  });
+                }}
+              >
+                My Profile
+              </Button>
 
           {currentUser ? (
             <Button
