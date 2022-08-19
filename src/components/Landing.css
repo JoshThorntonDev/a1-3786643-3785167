@@ -7,6 +7,10 @@
   width: 80%; /* the size of images used changes what this value needs to be */
 }
 
+.landing {
+  flex-grow:1;
+}
+
 @media (max-width: 2000px) {
   .carousel {
     width:50%;

@@ -3,7 +3,7 @@ import "./Landing.css";
 
 function Landing() {
   return (
-    <div className="d-flex justify-content-center">
+    <div className="landing d-flex justify-content-center">
       <Carousel fade="true">
         <Carousel.Item>
           <img

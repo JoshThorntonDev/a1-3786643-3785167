@@ -23,9 +23,11 @@ function App() {
   };
 
   return (
+    <div className="contain">
     <BrowserRouter>
-      <Header logout={logout} currentUser={currentUser} />
-      <div className="container">
+
+        <Header logout={logout} currentUser={currentUser} />
+        <div className="content">
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login login={login} />} />
@@ -33,9 +35,12 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element="404 Page Here" />
         </Routes>
-      </div>
-      <Footer />
+        </div>
+        <Footer />
+
     </BrowserRouter>
+
+    </div>
   );
 }
 
