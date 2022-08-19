@@ -24,6 +24,8 @@ function Header({ logout, currentUser }) {
           >
             Home (temp.)
           </Button>
+          
+          {currentUser && 
           <Button
                 variant="primary"
                 onClick={() => {
@@ -34,6 +36,7 @@ function Header({ logout, currentUser }) {
               >
                 My Profile
               </Button>
+            }
 
           {currentUser ? (
             <Button
