@@ -17,6 +17,7 @@ function Login({ login }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const users = getUsers();
 
@@ -30,7 +31,11 @@ function Login({ login }) {
     if (email in users) {
       if (password === users[email]["password"]) {
         login(email); // user successfully logged in
-        navigate("/profile", { replace: true }); // navigate somewhere afterwards
+        setShow(true);
+
+        setTimeout(() => {
+          navigate("/profile", { replace: true });
+        }, 1500);
       } else {
         setError(true); // password is wrong
         passwordRef.current.focus(); // focus on password input
@@ -50,6 +55,13 @@ function Login({ login }) {
         message="Sorry, your email and/or password did not match our records"
         display={error}
         setDisplay={setError}
+      />
+
+      <AnimatedAlert
+        variant="success"
+        message="Welcome back! We're redirecting you now"
+        display={show}
+        setDisplay={setShow}
       />
 
       <FloatingLabel label="Email address" className="mb-3">
