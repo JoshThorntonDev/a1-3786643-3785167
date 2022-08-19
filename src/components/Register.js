@@ -48,6 +48,7 @@ function Register({ login }) {
       return;
     }
     //TODO: check if email is valid and password is strong
+    //also TODO: maybe put validation in a seperate file for neatness
 
     //After passing validation, insert user into local storage
 
@@ -59,7 +60,7 @@ function Register({ login }) {
 
     //Log the user in and redirect them
     login(user.email);
-    navigate("/", { replace: true });
+    navigate("/profile", { replace: true });
   };
 
   return (

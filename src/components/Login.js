@@ -30,7 +30,7 @@ function Login({ login }) {
     if (email in users) {
       if (password === users[email]["password"]) {
         login(email); // user successfully logged in
-        navigate("/", { replace: true }); // navigate somewhere afterwards
+        navigate("/profile", { replace: true }); // navigate somewhere afterwards
       } else {
         setError(true); // password is wrong
         passwordRef.current.focus(); // focus on password input
