@@ -19,6 +19,7 @@ function Register({ login }) {
       date: "",
     });
   const [error, setError] = useState(false);
+  const [show, setShow] = useState(false);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
@@ -58,9 +59,14 @@ function Register({ login }) {
 
     insertUser(user);
 
+    
     //Log the user in and redirect them
-    login(user.email);
-    navigate("/profile", { replace: true });
+
+    setShow(true);
+    setTimeout(() => {
+      login(user.email);
+      navigate("/profile", { replace: true });
+    }, 1500);
   };
 
   return (
@@ -68,7 +74,12 @@ function Register({ login }) {
       <h1 className="mb-3 d-flex justify-content-center">Sign Up</h1>
 
       <AnimatedAlert variant="danger" message={message} display={error} setDisplay={setError}/>
-
+      <AnimatedAlert
+        variant="success"
+        message="Account creation successful!"
+        display={show}
+        setDisplay={setShow}
+      />
       <FloatingLabel label="Name" className="mb-3">
         <Form.Control
           type="text"

@@ -30,11 +30,12 @@ function Login({ login }) {
 
     if (email in users) {
       if (password === users[email]["password"]) {
-        login(email); // user successfully logged in
+
         setShow(true);
 
         setTimeout(() => {
           navigate("/profile", { replace: true });
+          login(email); // user successfully logged in
         }, 1500);
       } else {
         setError(true); // password is wrong
