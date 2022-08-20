@@ -1,5 +1,19 @@
 .profile {
-    text-align: center;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
     border-style: solid;
     border-radius: 10px;
+    padding: 1em;
+    margin: 1em;
+}
+
+
+.image {
+    max-width: 10vh;
+    max-height: 10vh;
+
+}
+
+.information {
+    text-align: right;
 }
