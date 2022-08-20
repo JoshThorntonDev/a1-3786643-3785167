@@ -12,7 +12,7 @@ function Profile() {
     
       <PersonCircle size={"10vh"} className="image"></PersonCircle>
 
-      <div>
+      <div className="information">
         <h1>{users[currentUser].name}'s Profile</h1>
         <p>{users[currentUser].email}</p>
         <hr></hr>
