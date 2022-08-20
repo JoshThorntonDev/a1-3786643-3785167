@@ -5,6 +5,8 @@
 }
 .content {
     flex-grow:1;
+    margin-left: 15vw;
+    margin-right: 15vw;
 }
 
 
