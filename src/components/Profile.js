@@ -1,6 +1,8 @@
 import "./Profile.css";
 
 import { getUsers } from "../data/Repository";
+import { PencilSquare, PersonCircle, Trash } from "react-bootstrap-icons";
+
 
 function Profile() {
   const users = getUsers();
@@ -8,11 +10,8 @@ function Profile() {
 
   return (
     <div className="profile">
-      <img
-        className="image"
-        alt={"Placeholder profile"}
-        src="https://cdn-icons.flaticon.com/png/512/552/premium/552848.png?token=exp=1660970412~hmac=cf7a2224dc7e1eb42c971940b696d080"
-      ></img>
+        
+       <PersonCircle size={'10vh'} className="image"></PersonCircle>
 
       <div className="information">
         <h1>{users[currentUser].name}'s Profile</h1>
@@ -21,7 +20,9 @@ function Profile() {
         <p>Joined: {users[currentUser].date}</p>
       </div>
       <div className="edit">
-
+        <div><PencilSquare className="editButton" size={'3vh'}></PencilSquare></div>
+        <div><Trash className="deleteButton" size={'3vh'}></Trash></div>
+        
       </div>
     </div>
   );
