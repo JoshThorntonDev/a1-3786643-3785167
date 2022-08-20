@@ -1,44 +1,19 @@
 .profile {
-    display:grid;
-    grid-template-columns: 1fr 2fr 0.3fr;
-    border-style: solid;
-    border-radius: 10px;
-    padding: 1em;
-    margin: 1em;
+  display: grid;
+  grid-template-columns: 1fr 2fr 0.5fr 0.3fr;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 1em;
 }
-
 
 .image {
-    display: grid;
-    grid-template-rows: 2fr 0.3fr
-}
-
-.information {
-    text-align: right;
+  display: grid;
+  grid-template-rows: 2fr 0.3fr;
 }
 
 .edit {
-    display: flex;
-    flex-direction: column;
-    margin-left: 1vw;
-    text-align: right;
-    justify-content:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-
-
-.editButton:hover {
-    transition-duration: 0.1s;
-    transform: scale(1.1);
-}
-
-.deleteButton {
-    color:red;
-    margin-top: 100%;
-}
-.deleteButton:hover {
-    transition-duration: 0.1s;
-    transform: scale(1.1);
-
-}
-
-
