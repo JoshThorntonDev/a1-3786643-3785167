@@ -33,16 +33,19 @@ function Register({ login }) {
 
     e.preventDefault(); //prevent form from submitting automatically
 
+    //Check that username is present
      if (!user.name) {
       setError(true);
       setMessage("Name is a required field");
       return;
     }
+    //Check that email is present
     if (!user.email) {
       setError(true);
       setMessage("Email is a required field");
       return;
     }
+    //Check that password is present
     if (!user.password) {
       setError(true);
       setMessage("Password is a required field");
@@ -53,8 +56,10 @@ function Register({ login }) {
 
     //After passing validation, insert user into local storage
 
+    //Save todays date as a string
     const date = new Date().toDateString();
 
+    //Store user's registration date along with their details
     user.date = date;
 
     insertUser(user);
