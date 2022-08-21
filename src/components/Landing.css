@@ -11,8 +11,4 @@
   flex-grow:1;
 }
 
-@media (max-width: 2000px) {
-  .carousel {
-    width:50%;
-  }
-}
+

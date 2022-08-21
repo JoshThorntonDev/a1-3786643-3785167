@@ -29,8 +29,17 @@ function insertUser(user) {
     setUsers(users);
 }
 
+function updateUser(user) {
+    const users = getUsers();
+
+    users[user.email] = user;
+
+    setUsers(users);
+}
+
 export {
     initUsers,
     getUsers,
-    insertUser
+    insertUser,
+    updateUser
 }

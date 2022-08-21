@@ -1,3 +1,9 @@
+.profile button {
+  min-width: 6vw;
+}
+h1 {
+  size:2em;
+}
 .profile {
   display: flex;
   flex-direction: row;
@@ -21,4 +27,14 @@
 
 .information {
   flex-grow: 1;
+}
+
+.shortForm {
+  max-width: fit-content;
+  max-height: 2em;
+}
+.name {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  
 }
