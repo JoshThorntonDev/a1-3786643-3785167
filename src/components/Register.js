@@ -5,6 +5,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 import AnimatedAlert from "./AnimatedAlert"
 import { insertUser } from "../data/Repository.js";
+import { validate } from "./RegisterValidation.js";
 
 //react components
 import { useState } from "react";
@@ -33,33 +34,26 @@ function Register({ login }) {
 
     e.preventDefault(); //prevent form from submitting automatically
 
-     if (!user.name) {
+    //Call validate function, store error message as string
+    let validateMessage = validate(user);
+    
+    //if there's an error message, set Error to true,
+    //save the message and return
+    if(validateMessage != "") {
       setError(true);
-      setMessage("Name is a required field");
+      setMessage(validateMessage);
       return;
     }
-    if (!user.email) {
-      setError(true);
-      setMessage("Email is a required field");
-      return;
-    }
-    if (!user.password) {
-      setError(true);
-      setMessage("Password is a required field");
-      return;
-    }
-    //TODO: check if email is valid and password is strong
-    //also TODO: maybe put validation in a seperate file for neatness
 
-    //After passing validation, insert user into local storage
-
+    //Save todays date as a string
     const date = new Date().toDateString();
 
+    //Store user's registration date along with their details
     user.date = date;
 
+    //After passing validation, insert user into local storage
     insertUser(user);
 
-    
     //Log the user in and redirect them
 
     setShow(true);
@@ -72,7 +66,6 @@ function Register({ login }) {
   return (
     <Form className="mb-3 loginForm" onSubmit={handleSubmit}>
       <h1 className="mb-3 d-flex justify-content-center">Sign Up</h1>
-
       <AnimatedAlert variant="danger" message={message} display={error} setDisplay={setError}/>
       <AnimatedAlert
         variant="success"
