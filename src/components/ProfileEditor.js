@@ -68,8 +68,8 @@ function ProfileEditor(props) {
         display={error}
         setDisplay={setError}
       />
-      <Modal.Body>
-        <Form>
+      <Form onSubmit={attemptSave}>
+        <Modal.Body>
           <Form.Group className="mb-3">
             <Form.Label>New Username (Max: 20 characters)</Form.Label>
             <Form.Control
@@ -96,16 +96,16 @@ function ProfileEditor(props) {
               ref={passwordRef}
             />
           </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={props.toggle}>
-          Close
-        </Button>
-        <Button onClick={attemptSave} variant="success" type="submit">
-          <CheckCircleFill></CheckCircleFill> Save
-        </Button>
-      </Modal.Footer>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={props.toggle}>
+            Close
+          </Button>
+          <Button onClick={attemptSave} variant="success" type="submit">
+            <CheckCircleFill></CheckCircleFill> Save
+          </Button>
+        </Modal.Footer>
+      </Form>
     </Modal>
   );
 }
