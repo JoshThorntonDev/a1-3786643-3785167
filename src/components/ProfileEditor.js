@@ -8,6 +8,12 @@ import AnimatedAlert from "./AnimatedAlert";
 
 // this function renders a modal containing a form that can edit user information
 // currently, it supports changing the name, and can be updated to also edit email and password if required
+
+// required props are:
+// show (boolean)
+// toggle (function, preferably one that clears `fields` and changes `show`)
+// fields (containing email, name, date and password)
+// setFields
 function ProfileEditor(props) {
   const users = getUsers();
   const currentUser = localStorage.getItem("currentUser");

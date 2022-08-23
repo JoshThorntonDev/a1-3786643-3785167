@@ -9,18 +9,21 @@ import ProfileEditor from "./ProfileEditor";
 function Profile() {
   const users = getUsers();
   const currentUser = localStorage.getItem("currentUser");
-  const [fields, setFields] = useState({ // a field storing all possible user data, currently only name is editable
+  const [fields, setFields] = useState({
+    // a field storing all possible user data, currently only name is editable
     email: users[currentUser].email,
     name: "",
     date: users[currentUser].date,
-    password: users[currentUser].password,
+    password: "",
   });
+  // the field is stored here to make it easier to clear the values when the modal is closed,
+  // either by closing it manually or when an update is successful
 
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
-    // toggle the edit state without saving
-    // since this is used for cancelling, it has to clear the form as well
+    // toggle the edit state
+    // it also clears the form in case the user opens it again
     fields.name = "";
     fields.password = "";
     setShowModal((current) => !current);
@@ -29,7 +32,6 @@ function Profile() {
   const deleteUser = () => {
     console.log("delete");
   };
-
 
   return (
     <div className="profile">
