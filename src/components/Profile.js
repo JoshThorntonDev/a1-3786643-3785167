@@ -5,6 +5,8 @@ import { getUsers } from "../data/Repository";
 import { PencilSquare, PersonCircle, Trash } from "react-bootstrap-icons";
 import { useState } from "react";
 import ProfileEditor from "./ProfileEditor";
+import { insertPost } from "../data/PostRepository";
+import Form from "react-bootstrap/Form";
 
 function Profile() {
   const users = getUsers();
@@ -33,32 +35,74 @@ function Profile() {
     console.log("delete");
   };
 
+  const [post, setPost] = useState({
+    userId: currentUser,
+    content: "",
+    imageUrl: "",
+    replyPostIds: [],
+    date: "",
+  });
+
+  const handleInputChange = (event) => {
+    setPost({
+      ...post,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const go = () => {
+    insertPost(post);
+    post.content = "";
+  };
+
   return (
-    <div className="profile">
-      <ProfileEditor
-        show={showModal}
-        toggle={toggleModal}
-        fields={fields}
-        setFields={setFields}
-      />
-      <PersonCircle size={"10vh"} className="image"></PersonCircle>
+    <div>
+      <div className="profile">
+        <ProfileEditor
+          show={showModal}
+          toggle={toggleModal}
+          fields={fields}
+          setFields={setFields}
+        />
+        <PersonCircle size={"10vh"} className="image"></PersonCircle>
 
-      <div className="information">
-        <h1>{users[currentUser].name}'s Profile</h1>
-        <p>{users[currentUser].email}</p>
-        <hr />
-        <p>Joined: {users[currentUser].date}</p>
+        <div className="information">
+          <h1>{users[currentUser].name}'s Profile</h1>
+          <p>{users[currentUser].email}</p>
+          <hr />
+          <p>Joined: {users[currentUser].date}</p>
+        </div>
+
+        <div className="edit">
+          <Button onClick={toggleModal} variant="primary" type="submit">
+            <PencilSquare size={"2vh"}></PencilSquare> Edit
+          </Button>
+
+          <Button onClick={deleteUser} variant="danger" type="submit">
+            <Trash size={"2vh"}></Trash> Delete
+          </Button>
+        </div>
       </div>
 
-      <div className="edit">
-        <Button onClick={toggleModal} variant="primary" type="submit">
-          <PencilSquare size={"2vh"}></PencilSquare> Edit
-        </Button>
+      
+      <Form>
+        <Form.Group className="mb-3">
+          <Form.Label>content</Form.Label>
+          <Form.Control
+            name="content"
+            type="text"
+            autoFocus
+            maxLength={20}
+            value={post.content}
+            onChange={handleInputChange}
+            required
+          />
+        </Form.Group>
 
-        <Button onClick={deleteUser} variant="danger" type="submit">
-          <Trash size={"2vh"}></Trash> Delete
+        <Button onClick={go} variant="success" type="submit">
+          go
         </Button>
-      </div>
+      </Form>
     </div>
   );
 }
