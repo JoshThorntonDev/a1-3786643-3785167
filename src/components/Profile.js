@@ -5,8 +5,6 @@ import { getUsers } from "../data/Repository";
 import { PencilSquare, PersonCircle, Trash } from "react-bootstrap-icons";
 import { useState } from "react";
 import ProfileEditor from "./ProfileEditor";
-import { insertPost } from "../data/PostRepository";
-import Form from "react-bootstrap/Form";
 
 function Profile() {
   const users = getUsers();
@@ -33,26 +31,6 @@ function Profile() {
 
   const deleteUser = () => {
     console.log("delete");
-  };
-
-  const [post, setPost] = useState({
-    userId: currentUser,
-    content: "",
-    imageUrl: "",
-    replyPostIds: [],
-    date: "",
-  });
-
-  const handleInputChange = (event) => {
-    setPost({
-      ...post,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const go = () => {
-    insertPost(post);
-    post.content = "";
   };
 
   return (
@@ -83,26 +61,6 @@ function Profile() {
           </Button>
         </div>
       </div>
-
-      
-      <Form>
-        <Form.Group className="mb-3">
-          <Form.Label>content</Form.Label>
-          <Form.Control
-            name="content"
-            type="text"
-            autoFocus
-            maxLength={20}
-            value={post.content}
-            onChange={handleInputChange}
-            required
-          />
-        </Form.Group>
-
-        <Button onClick={go} variant="success" type="submit">
-          go
-        </Button>
-      </Form>
     </div>
   );
 }

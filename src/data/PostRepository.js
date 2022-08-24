@@ -1,5 +1,6 @@
 //Code adapted from Week 5 Practical Activity 1 'repository.js'
 
+
 const POSTS_KEY = "posts";
 
 function initPosts() {
@@ -22,22 +23,23 @@ function setPosts(posts) {
 function insertPost(post) {
   //Retrieve Posts, add new Posts to the list, and call setPosts
 
-  if(post.content !== "") {
+  if (post.content !== "") {
+    let currentDate = new Date();
+
+    post.date = currentDate.toDateString()
+    post.time = currentDate.getHours() + ":" + currentDate.getMinutes();
     const posts = getPosts();
 
     posts[getNewID()] = post;
-  
+
     setPosts(posts);
   }
-
-
 }
+
+
 
 function getNewID() {
-  let uid = crypto.randomUUID();
-
-  return uid;
+  return crypto.randomUUID();
 }
-
 
 export { initPosts, getPosts, insertPost};
