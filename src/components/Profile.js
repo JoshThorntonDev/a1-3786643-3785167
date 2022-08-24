@@ -23,7 +23,7 @@ function Profile() {
 
   const toggleModal = () => {
     // toggle the edit state
-    // it also clears the form in case the user opens it again
+    // it also clears the fields in case the user opens it again
     fields.name = "";
     fields.password = "";
     setShowModal((current) => !current);
@@ -46,10 +46,10 @@ function Profile() {
       <div className="information">
         <h1>{users[currentUser].name}'s Profile</h1>
         <p>{users[currentUser].email}</p>
-        <hr></hr>
+        <hr />
         <p>Joined: {users[currentUser].date}</p>
       </div>
-      <div></div>
+
       <div className="edit">
         <Button onClick={toggleModal} variant="primary" type="submit">
           <PencilSquare size={"2vh"}></PencilSquare> Edit
