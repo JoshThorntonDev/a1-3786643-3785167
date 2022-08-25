@@ -15,6 +15,13 @@ function getUsers() {
     return JSON.parse(localStorage.getItem(USERS_KEY));
 }
 
+function getUser(id) { // return a single user based on its unique id
+    // it returns it in a way that it can be accessed using something
+    // like getUser(id).name if you want
+    var user = JSON.parse(localStorage.getItem(USERS_KEY));
+    return user[id];
+}
+
 function setUsers(users) {
     //Set all users to localStorage
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
@@ -52,6 +59,7 @@ function removeUser(key) {
 export {
     initUsers,
     getUsers,
+    getUser,
     insertUser,
     updateUser,
     removeUser
