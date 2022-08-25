@@ -18,6 +18,7 @@ function Register({ login }) {
       email: "",
       password: "",
       date: "",
+      posts: []
     });
   const [error, setError] = useState(false);
   const [show, setShow] = useState(false);

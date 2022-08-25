@@ -1,5 +1,7 @@
 //Code adapted from Week 5 Practical Activity 1 'repository.js'
 
+import { assignPostToUser } from "./Repository";
+
 
 const POSTS_KEY = "posts";
 
@@ -20,7 +22,7 @@ function setPosts(posts) {
   localStorage.setItem(POSTS_KEY, JSON.stringify(posts));
 }
 
-function insertPost(post) {
+function insertPost(post, currentUser) {
   //Retrieve Posts, add new Posts to the list, and call setPosts
 
   if (post.content !== "") {
@@ -30,10 +32,20 @@ function insertPost(post) {
     post.time = currentDate.getHours() + ":" + currentDate.getMinutes();
     const posts = getPosts();
 
-    posts[getNewID()] = post;
+    var id = getNewID()
+    posts[id] = post;
 
     setPosts(posts);
+    assignPostToUser(currentUser, id)
   }
+}
+
+function deletePost(id) { // doesnt actually delete the post, just changes the content and poster to [deleted]
+  const posts = getPosts();
+  posts[id].content = "[deleted]"
+  posts[id].userId = "[deleted]"
+  setPosts(posts)
+
 }
 
 
@@ -42,4 +54,4 @@ function getNewID() {
   return crypto.randomUUID();
 }
 
-export { initPosts, getPosts, insertPost};
+export { initPosts, getPosts, insertPost, deletePost};

@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
 import { getPosts, insertPost } from "../data/PostRepository";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { getUser } from "../data/Repository";
@@ -14,8 +14,9 @@ function Posts() {
     });
   };
 
-  const go = () => {
-    insertPost(post);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    insertPost(post, currentUser);
     post.content = "";
   };
 
@@ -30,9 +31,12 @@ function Posts() {
 
   const posts = getPosts();
 
+
+  
+
   return (
     <div>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>content</Form.Label>
           <Form.Control
@@ -46,7 +50,7 @@ function Posts() {
           />
         </Form.Group>
 
-        <Button onClick={go} variant="success" type="submit">
+        <Button variant="success" type="submit">
           post
         </Button>
       </Form>
@@ -54,7 +58,13 @@ function Posts() {
       
     {Object.keys(posts).map((id) => {
         const post = posts[id];
-        const user = getUser(post.userId);
+        var name = ""
+        if (post.userId === "[deleted]") {
+          name = ["[deleted]"]
+        } else {
+          name = getUser(post.userId).name
+        }
+        
         return (
             <Container>
                 <Row>
@@ -62,7 +72,7 @@ function Posts() {
                 </Row>
                 <Row>
                     <hr />
-                    <small>Posted by: {user.name} on: {post.date} at: {post.time}</small>
+                    <small>Posted by: {name} on: {post.date} at: {post.time}</small>
                 </Row>
             </Container>
         )
