@@ -30,6 +30,7 @@ function ProfileDeleter(props) {
   const passwordRef = useRef(null);
 
   const [error, setError] = useState(false);
+  const [show, setShow] = useState(false);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
@@ -44,7 +45,12 @@ function ProfileDeleter(props) {
         // log them out, and return to home page
         removeUser(currentUser);
         localStorage.removeItem('currentUser');
-        navigate("/", { replace: true });
+        setShow(true);
+        setMessage("Account deleted successfully");
+        setTimeout(() => {
+            navigate("/", { replace: true });
+          }, 1500);
+
     } else {
         setMessage("Sorry, your password was incorrect");
         setError(true);
@@ -57,6 +63,7 @@ function ProfileDeleter(props) {
       <Modal.Header closeButton>
         <Modal.Title>Delete Profile</Modal.Title>
       </Modal.Header>
+      <AnimatedAlert variant="success" message={message} display={show} setDisplay={setShow}/>
       <AnimatedAlert
         variant="danger"
         message={message}
