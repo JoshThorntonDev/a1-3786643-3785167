@@ -41,8 +41,9 @@ function insertPost(post, currentUser) {
 
 function deletePost(id) {
   // doesnt actually delete the post, just changes the content and poster to [deleted]
-  console.log("deleting post");
+
   const posts = getPosts();
+
   posts[id].content = "[deleted]";
   posts[id].userId = "[deleted]";
   setPosts(posts);
