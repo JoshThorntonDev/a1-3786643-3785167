@@ -5,8 +5,9 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { useNavigate } from "react-router-dom";
 
-function Header({ logout, currentUser }) {
+function Header({ logout }) {
   const navigate = useNavigate();
+  const currentUser = localStorage.getItem("currentUser");
 
   return (
     <Navbar className="headerNav" bg="dark" variant="dark">

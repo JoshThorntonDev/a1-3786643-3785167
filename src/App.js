@@ -10,15 +10,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(
-    localStorage.getItem("currentUser")
-  );
   const login = (email) => {
-    setCurrentUser(email);
     localStorage.setItem("currentUser", email);
   };
   const logout = () => {
-    setCurrentUser(null);
     localStorage.removeItem("currentUser");
   };
 
@@ -26,7 +21,7 @@ function App() {
     <div className="contain">
     <BrowserRouter>
 
-        <Header logout={logout} currentUser={currentUser} />
+        <Header logout={logout} />
         <div className="content">
         <Routes>
           <Route path="/" element={<Landing />} />

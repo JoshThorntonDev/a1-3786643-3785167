@@ -37,9 +37,20 @@ function updateUser(user) {
     setUsers(users);
 }
 
+//Takes key (email) as a parameter
+function removeUser(key) {
+    const users = getUsers();
+
+    delete users[key];
+
+    //Set users again after user has been removed
+    setUsers(users);
+}
+
 export {
     initUsers,
     getUsers,
     insertUser,
-    updateUser
+    updateUser,
+    removeUser
 }

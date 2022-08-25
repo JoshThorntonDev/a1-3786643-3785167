@@ -1,9 +1,10 @@
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { useRef, useState } from "react";
-import { getUsers } from "../data/Repository";
+import { getUsers, removeUser } from "../data/Repository";
 import Button from "react-bootstrap/Button";
 import AnimatedAlert from "./AnimatedAlert";
+import { useNavigate } from "react-router-dom";
 
 //renders a modal that allows the user to delete their account
 // similar to the ProfileEditor function, but only takes an input of confirmation password
@@ -30,6 +31,7 @@ function ProfileDeleter(props) {
 
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const attemptSave = (event) => {
     setMessage(""); // clear error message
@@ -38,11 +40,11 @@ function ProfileDeleter(props) {
 
     //check if password is correct
     if (props.fields.password === users[currentUser].password) {
-        //TODO: if password is correct, delete the user from local storage,
+        //if password is correct, delete the user from local storage,
         // log them out, and return to home page
-        console.log("User Deleted");
-        props.toggle(); // close modal
-        setMessage("");
+        removeUser(currentUser);
+        localStorage.removeItem('currentUser');
+        navigate("/", { replace: true });
     } else {
         setMessage("Sorry, your password was incorrect");
         setError(true);
