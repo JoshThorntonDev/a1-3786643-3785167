@@ -2,7 +2,6 @@
 
 import { assignPostToUser } from "./Repository";
 
-
 const POSTS_KEY = "posts";
 
 function initPosts() {
@@ -28,30 +27,29 @@ function insertPost(post, currentUser) {
   if (post.content !== "") {
     let currentDate = new Date();
 
-    post.date = currentDate.toDateString()
-    post.time = currentDate.getHours() + ":" + currentDate.getMinutes();
+    post.date = currentDate.toLocaleString().split(",")[0]; // 0 makes it only the date
+    post.time = currentDate.toLocaleString().split(",")[1]; // 1 makes it only the time
     const posts = getPosts();
 
-    var id = getNewID()
+    var id = getNewID();
     posts[id] = post;
 
     setPosts(posts);
-    assignPostToUser(currentUser, id)
+    assignPostToUser(currentUser, id);
   }
 }
 
-function deletePost(id) { // doesnt actually delete the post, just changes the content and poster to [deleted]
+function deletePost(id) {
+  // doesnt actually delete the post, just changes the content and poster to [deleted]
+  console.log("deleting post");
   const posts = getPosts();
-  posts[id].content = "[deleted]"
-  posts[id].userId = "[deleted]"
-  setPosts(posts)
-
+  posts[id].content = "[deleted]";
+  posts[id].userId = "[deleted]";
+  setPosts(posts);
 }
-
-
 
 function getNewID() {
   return crypto.randomUUID();
 }
 
-export { initPosts, getPosts, insertPost, deletePost};
+export { initPosts, getPosts, insertPost, deletePost };

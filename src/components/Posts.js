@@ -2,13 +2,17 @@ import Form from "react-bootstrap/Form";
 import { getPosts, insertPost } from "../data/PostRepository";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
+import Card from "react-bootstrap/Card";
 import { getUser } from "../data/Repository";
+import "./Posts.css"
+import PostList from "./PostList";
+
+
 function Posts() {
   const currentUser = localStorage.getItem("currentUser");
 
   const posts = getPosts();
+
 
   const [post, setPost] = useState({
     userId: currentUser,
@@ -28,9 +32,13 @@ function Posts() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setPost({ ...post, content: "" });
     insertPost(post, currentUser);
-    post.content = "";
   };
+
+  // return (
+  //   <PostList posts={posts}></PostList>
+  // )
 
   return (
     <div>
@@ -63,17 +71,18 @@ function Posts() {
         }
 
         return (
-          <Container>
-            <Row>Content: {post.content}</Row>
-            <Row>
-              <hr />
-              <small>
-                Posted by: {name} on: {post.date} at: {post.time}
-              </small>
-            </Row>
-          </Container>
+            <Card>
+              <Card.Body>{post.content}</Card.Body>
+              <Card.Footer className="d-flex justify-content-between">
+                <span>Posted by: {name}</span> <span> {post.date} | {post.time}</span>
+              </Card.Footer>
+            </Card>
         );
       })}
+
+
+
+
     </div>
   );
 }

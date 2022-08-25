@@ -19,7 +19,7 @@ function ProfileDeleter(props) {
   const users = getUsers();
   const currentUser = localStorage.getItem("currentUser");
   // get users and current users so we dont have to have ugly things like props.users[props.currentUser].password
-  
+
   const passwordRef = useRef(null);
 
   const [error, setError] = useState(false);
@@ -41,21 +41,21 @@ function ProfileDeleter(props) {
 
     //check if password is correct
     if (props.fields.password === users[currentUser].password) {
-        //if password is correct, delete the user from local storage,
-        // log them out, and return to home page
-        removeUser(currentUser);
-        localStorage.removeItem('currentUser');
+      //if password is correct, delete the user from local storage,
+      // log them out, and return to home page
+      removeUser(currentUser);
+      localStorage.removeItem("currentUser");
 
-        //show confirmation message before redirecting
-        setShow(true);
-        setMessage("Account deleted successfully");
-        setTimeout(() => {
-            navigate("/", { replace: true });
-          }, 1500);
+      //show confirmation message before redirecting
+      setShow(true);
+      setMessage("Account deleted successfully");
+      setTimeout(() => {
+        navigate("/", { replace: true });
+      }, 1500);
     } else {
-        setMessage("Sorry, your password was incorrect");
-        setError(true);
-        passwordRef.current.focus(); // focus on password field
+      setMessage("Sorry, your password was incorrect");
+      setError(true);
+      passwordRef.current.focus(); // focus on password field
     }
   };
 
@@ -64,7 +64,12 @@ function ProfileDeleter(props) {
       <Modal.Header closeButton>
         <Modal.Title>Delete Profile</Modal.Title>
       </Modal.Header>
-      <AnimatedAlert variant="success" message={message} display={show} setDisplay={setShow}/>
+      <AnimatedAlert
+        variant="success"
+        message={message}
+        display={show}
+        setDisplay={setShow}
+      />
       <AnimatedAlert
         variant="danger"
         message={message}
@@ -73,19 +78,19 @@ function ProfileDeleter(props) {
       />
       <Form onSubmit={attemptSave}>
         <Modal.Body>
-            <p>Are you sure you wish to delete this account?</p>
-            <Form.Group className="mb-3">
-                <Form.Label>Confirmation Password</Form.Label>
-                <Form.Control
-                name="password"
-                type="password"
-                placeholder="Enter your password here"
-                value={props.fields.password}
-                onChange={handleInputChange}
-                required
-                ref={passwordRef}
-                />
-            </Form.Group>
+          <p>Are you sure you wish to delete this account?</p>
+          <Form.Group className="mb-3">
+            <Form.Label>Confirmation Password</Form.Label>
+            <Form.Control
+              name="password"
+              type="password"
+              placeholder="Enter your password here"
+              value={props.fields.password}
+              onChange={handleInputChange}
+              required
+              ref={passwordRef}
+            />
+          </Form.Group>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.toggle}>

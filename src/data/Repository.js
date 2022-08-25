@@ -47,13 +47,11 @@ function updateUser(user) {
 }
 
 function assignPostToUser(user, postId) {
-    const users = getUsers();
+  const users = getUsers();
 
-    console.log(users[user])
-    users[user].posts.push(postId)
+  users[user].posts.push(postId);
 
-    setUsers(users)
-
+  setUsers(users);
 }
 
 function removeUser(key) {
@@ -61,10 +59,11 @@ function removeUser(key) {
   //and deletes a single user based on the key/email provided
   const users = getUsers();
 
-  for(let i = 0; i<users[key].posts.length; i++) { // mark all posts by the user as deleted
+  for (let i = 0; i < users[key].posts.length; i++) {
+    // mark all posts by the user as deleted
     deletePost(users[key].posts[i]);
+    console.log("why");
   }
-    
 
   delete users[key];
 

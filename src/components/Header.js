@@ -1,6 +1,5 @@
 import "./Header.css";
 import Button from "react-bootstrap/Button";
-import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +31,7 @@ function Header({ logout }) {
                 variant="primary"
                 onClick={() => {
                   navigate("/posts", {
-                    replace: false
+                    replace: false,
                   });
                 }}
               >
