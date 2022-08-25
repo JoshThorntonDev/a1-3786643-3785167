@@ -19,6 +19,13 @@ function ProfileDeleter(props) {
   const users = getUsers();
   const currentUser = localStorage.getItem("currentUser");
   // get users and current users so we dont have to have ugly things like props.users[props.currentUser].password
+  
+  const passwordRef = useRef(null);
+
+  const [error, setError] = useState(false);
+  const [show, setShow] = useState(false);
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     props.setFields({
@@ -26,13 +33,6 @@ function ProfileDeleter(props) {
       [event.target.name]: event.target.value,
     });
   };
-
-  const passwordRef = useRef(null);
-
-  const [error, setError] = useState(false);
-  const [show, setShow] = useState(false);
-  const [message, setMessage] = useState("");
-  const navigate = useNavigate();
 
   const attemptSave = (event) => {
     setMessage(""); // clear error message
@@ -45,12 +45,13 @@ function ProfileDeleter(props) {
         // log them out, and return to home page
         removeUser(currentUser);
         localStorage.removeItem('currentUser');
+
+        //show confirmation message before redirecting
         setShow(true);
         setMessage("Account deleted successfully");
         setTimeout(() => {
             navigate("/", { replace: true });
           }, 1500);
-
     } else {
         setMessage("Sorry, your password was incorrect");
         setError(true);

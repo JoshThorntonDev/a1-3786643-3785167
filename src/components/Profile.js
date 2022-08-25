@@ -32,7 +32,7 @@ function Profile() {
   };
 
   const toggleDelete = () => {
-    //toggle delete state, clear password incase it was entered before
+    //toggle delete state, clear password in case it was entered before
     fields.password = "";
     setShowDelete((current) => !current);
   };

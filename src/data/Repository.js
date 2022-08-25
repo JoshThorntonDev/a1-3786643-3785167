@@ -37,8 +37,10 @@ function updateUser(user) {
     setUsers(users);
 }
 
-//Takes key (email) as a parameter
+
 function removeUser(key) {
+    //Takes key (email) as a parameter, retrieves list of users
+    //and deletes a single user based on the key/email provided
     const users = getUsers();
 
     delete users[key];
