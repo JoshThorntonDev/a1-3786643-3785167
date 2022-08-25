@@ -5,6 +5,7 @@ import { getUsers } from "../data/Repository";
 import { PencilSquare, PersonCircle, Trash } from "react-bootstrap-icons";
 import { useState } from "react";
 import ProfileEditor from "./ProfileEditor";
+import ProfileDeleter from "./ProfileDeleter";
 
 function Profile() {
   const users = getUsers();
@@ -20,6 +21,7 @@ function Profile() {
   // either by closing it manually or when an update is successful
 
   const [showModal, setShowModal] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
 
   const toggleModal = () => {
     // toggle the edit state
@@ -29,8 +31,10 @@ function Profile() {
     setShowModal((current) => !current);
   };
 
-  const deleteUser = () => {
-    console.log("delete");
+  const toggleDelete = () => {
+    //toggle delete state, clear password incase it was entered before
+    fields.password = "";
+    setShowDelete((current) => !current);
   };
 
   return (
@@ -38,6 +42,13 @@ function Profile() {
       <ProfileEditor
         show={showModal}
         toggle={toggleModal}
+        fields={fields}
+        setFields={setFields}
+      />
+
+      <ProfileDeleter
+        show={showDelete}
+        toggle={toggleDelete}
         fields={fields}
         setFields={setFields}
       />
@@ -55,7 +66,7 @@ function Profile() {
           <PencilSquare size={"2vh"}></PencilSquare> Edit
         </Button>
 
-        <Button onClick={deleteUser} variant="danger" type="submit">
+        <Button onClick={toggleDelete} variant="danger" type="submit">
           <Trash size={"2vh"}></Trash> Delete
         </Button>
       </div>
