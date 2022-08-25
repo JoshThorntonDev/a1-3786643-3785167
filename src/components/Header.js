@@ -1,5 +1,6 @@
 import "./Header.css";
 import Button from "react-bootstrap/Button";
+import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { useNavigate } from "react-router-dom";
@@ -24,9 +25,20 @@ function Header({ logout }) {
           >
             Home (temp.)
           </Button>
-          
-          {currentUser && 
-          <Button
+
+          {currentUser && (
+            <div>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  navigate("/posts", {
+                    replace: false
+                  });
+                }}
+              >
+                Posts
+              </Button>
+              <Button
                 variant="primary"
                 onClick={() => {
                   navigate("/profile", {
@@ -36,7 +48,8 @@ function Header({ logout }) {
               >
                 My Profile
               </Button>
-            }
+            </div>
+          )}
 
           {currentUser ? (
             <Button
