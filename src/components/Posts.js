@@ -1,12 +1,24 @@
 import Form from "react-bootstrap/Form";
 import { getPosts, insertPost } from "../data/PostRepository";
 import Button from "react-bootstrap/Button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { getUser } from "../data/Repository";
 function Posts() {
   const currentUser = localStorage.getItem("currentUser");
+
+  const posts = getPosts();
+
+  const [post, setPost] = useState({
+    userId: currentUser,
+    content: "",
+    imageUrl: "",
+    replyPostIds: [],
+    date: "unknown",
+    time: "",
+  });
+
   const handleInputChange = (event) => {
     setPost({
       ...post,
@@ -19,20 +31,6 @@ function Posts() {
     insertPost(post, currentUser);
     post.content = "";
   };
-
-  const [post, setPost] = useState({
-    userId: currentUser,
-    content: "",
-    imageUrl: "",
-    replyPostIds: [],
-    date: "unknown",
-    time: ""
-  });
-
-  const posts = getPosts();
-
-
-  
 
   return (
     <div>
@@ -55,29 +53,28 @@ function Posts() {
         </Button>
       </Form>
 
-      
-    {Object.keys(posts).map((id) => {
+      {Object.keys(posts).map((id) => {
         const post = posts[id];
-        var name = ""
+        var name = "";
         if (post.userId === "[deleted]") {
-          name = ["[deleted]"]
+          name = ["[deleted]"];
         } else {
-          name = getUser(post.userId).name
+          name = getUser(post.userId).name;
         }
-        
+
         return (
-            <Container>
-                <Row>
-                    Content: {post.content}
-                </Row>
-                <Row>
-                    <hr />
-                    <small>Posted by: {name} on: {post.date} at: {post.time}</small>
-                </Row>
-            </Container>
-        )
-    })}
-        </div>
+          <Container>
+            <Row>Content: {post.content}</Row>
+            <Row>
+              <hr />
+              <small>
+                Posted by: {name} on: {post.date} at: {post.time}
+              </small>
+            </Row>
+          </Container>
+        );
+      })}
+    </div>
   );
 }
 export default Posts;

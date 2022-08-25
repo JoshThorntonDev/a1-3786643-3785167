@@ -7,7 +7,6 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react";
 import Posts from "./components/Posts";
 
 function App() {

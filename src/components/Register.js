@@ -40,7 +40,7 @@ function Register({ login }) {
     
     //if there's an error message, set Error to true,
     //save the message and return
-    if(validateMessage != "") {
+    if(validateMessage !== "") {
       setError(true);
       setMessage(validateMessage);
       return;
