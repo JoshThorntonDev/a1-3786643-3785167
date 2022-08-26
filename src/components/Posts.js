@@ -54,25 +54,6 @@ function Posts() {
         setFields={setPost}
       />
 
-      {/* <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>content</Form.Label>
-          <Form.Control
-            name="content"
-            type="text"
-            autoFocus
-            maxLength={250}
-            value={post.content}
-            onChange={handleInputChange}
-            required
-          />
-        </Form.Group>
-
-        <Button variant="success" type="submit">
-          post
-        </Button>
-      </Form> */}
-
       {Object.keys(posts).map((id) => {
         const post = posts[id];
 

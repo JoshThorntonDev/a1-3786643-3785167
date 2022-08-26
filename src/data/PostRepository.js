@@ -39,6 +39,12 @@ function insertPost(post, currentUser) {
   }
 }
 
+function getPost(id) {
+  const posts = getPosts();
+
+  return posts[id]
+}
+
 function deletePost(id) {
   // doesnt actually delete the post, just changes the content and poster to [deleted]
 
@@ -53,4 +59,4 @@ function getNewID() {
   return crypto.randomUUID();
 }
 
-export { initPosts, getPosts, insertPost, deletePost };
+export { initPosts, getPosts, insertPost, deletePost, getPost };

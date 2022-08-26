@@ -6,6 +6,7 @@ import { PencilSquare, PersonCircle, Trash } from "react-bootstrap-icons";
 import { useState } from "react";
 import ProfileEditor from "./ProfileEditor";
 import ProfileDeleter from "./ProfileDeleter";
+import { getPost } from "../data/PostRepository";
 
 function Profile() {
   const users = getUsers();
@@ -37,7 +38,13 @@ function Profile() {
     setShowDelete((current) => !current);
   };
 
+  users[currentUser].posts.forEach(element => {
+    console.log(element + " LOOK AT ME YOU NEED TO DO THIS NOW")
+  });
+  
+
   return (
+    <div>
     <div className="profile">
       <ProfileEditor
         show={showModal}
@@ -70,7 +77,13 @@ function Profile() {
           <Trash size={"2vh"}></Trash> Delete
         </Button>
       </div>
+      
     </div>
+    
+
+    
+    </div>
+
   );
 }
 
