@@ -84,6 +84,9 @@ function Posts() {
         return (
           <Card>
             <Card.Body>{post.content}</Card.Body>
+            <Card.Body>
+              <img src={post.image} height="120" width="120" />
+            </Card.Body>
             <Card.Footer className="d-flex justify-content-between">
               <div>Posted by: {name}</div>{" "}
               <div>

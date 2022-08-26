@@ -65,6 +65,15 @@ function PostCreator(props) {
               ref={inputRef}
             />
           </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Image URL (optional)</Form.Label>
+            <Form.Control
+              name="image"
+              type="text"
+              value={props.fields.image}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.toggle}>
