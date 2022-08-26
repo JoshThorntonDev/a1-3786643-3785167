@@ -17,7 +17,7 @@ function Posts() {
   const [post, setPost] = useState({
     userId: currentUser,
     content: "",
-    imageUrl: "",
+    image: null,
     replyPostIds: [],
     date: "unknown",
     time: "",
@@ -72,7 +72,6 @@ function Posts() {
       </Form> */}
 
       {Object.keys(posts).map((id) => {
-        console.log(id);
         const post = posts[id];
         var name = "";
         if (post.userId === "[deleted]") {

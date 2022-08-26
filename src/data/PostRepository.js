@@ -3,7 +3,7 @@
 import { assignPostToUser } from "./Repository";
 
 const POSTS_KEY = "posts";
-
+const CLIENT_ID = "a04a026525fb2e4";
 function initPosts() {
   if (localStorage.getItem(POSTS_KEY) !== null) return;
 
@@ -23,6 +23,7 @@ function setPosts(posts) {
 
 function insertPost(post, currentUser) {
   //Retrieve Posts, add new Posts to the list, and call setPosts
+  uploadImage(post)
 
   if (post.content !== "") {
     let currentDate = new Date();
@@ -49,8 +50,30 @@ function deletePost(id) {
   setPosts(posts);
 }
 
+function uploadImage(post) {
+  var headers = new Headers();
+  headers.append("Authorization", "Client-ID " + CLIENT_ID );
+
+  var formdata = new FormData();
+  formdata.append("image", post.image);
+
+  console.log(post.image)
+  var requestOptions = {
+    method: "POST",
+    headers: headers,
+    body: formdata,
+    redirect: "follow",
+  };
+
+  fetch("https://api.imgur.com/3/upload", requestOptions)
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
+}
+
 function getNewID() {
   return crypto.randomUUID();
 }
 
 export { initPosts, getPosts, insertPost, deletePost };
+// image uploading code adapted from https://apidocs.imgur.com/

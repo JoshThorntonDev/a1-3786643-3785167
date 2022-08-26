@@ -1,7 +1,6 @@
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { useRef, useState } from "react";
-import { updateUser, getUsers } from "../data/Repository";
 import { CheckCircleFill } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import AnimatedAlert from "./AnimatedAlert";
@@ -63,6 +62,15 @@ function PostCreator(props) {
               onChange={handleInputChange}
               required
               ref={inputRef}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>File Upload (optional)</Form.Label>
+            <Form.Control
+              name="image"
+              type="file"
+              value={props.fields.file}
+              onChange={handleInputChange}
             />
           </Form.Group>
         </Modal.Body>
