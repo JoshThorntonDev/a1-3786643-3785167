@@ -1,13 +1,13 @@
 import { getPosts } from "../data/PostRepository";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
-import Card from "react-bootstrap/Card";
 import { getUser } from "../data/Repository";
 import "./Posts.css";
 
 import PostCreator from "./PostCreator";
-import { PencilSquare, PlusCircleFill } from "react-bootstrap-icons";
-import { deletePost } from "../data/PostRepository";
+import { PlusCircleFill } from "react-bootstrap-icons";
+
+import PostCard from "./PostCard";
 
 function Posts() {
   const currentUser = localStorage.getItem("currentUser");
@@ -31,7 +31,6 @@ function Posts() {
     post.content = "";
 
     post.image = "";
-
 
     setShowModal((current) => !current);
   };
@@ -76,41 +75,26 @@ function Posts() {
 
       {Object.keys(posts).map((id) => {
         const post = posts[id];
+
         var name = "";
+
+        // deal with some posts not being linked with an existing profile, and provide a placeholder name
         if (post.userId === "[deleted]") {
-          name = ["[deleted]"];
+          name = "[deleted]";
         } else {
           name = getUser(post.userId).name;
         }
 
         return (
-          <Card key={id}>
-            <Card.Body>{post.content}</Card.Body>
-            {post.image && (
-              <Card.Body>
-                <img src={post.image} height="120" width="120" />
-              </Card.Body>
-            )}
-
-            <Card.Footer className="d-flex justify-content-between">
-              <div>Posted by: {name}</div>{" "}
-              <div>
-                <span className="postButton">
-                  <Button size="sm" disabled variant="info">
-                    <PencilSquare /> Edit
-                  </Button>{" "}
-                  <Button
-                    size="sm"
-                    onClick={() => deletePost(id)}
-                    variant="danger"
-                  >
-                    Delete
-                  </Button>
-                </span>{" "}
-                {post.date} | {post.time}
-              </div>
-            </Card.Footer>
-          </Card>
+          <PostCard
+            key={id}
+            name={name}
+            content={post.content}
+            image={post.image}
+            date={post.date}
+            time={post.time}
+            id={id}
+          />
         );
       })}
     </div>
