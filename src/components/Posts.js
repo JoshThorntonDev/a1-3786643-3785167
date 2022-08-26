@@ -17,7 +17,7 @@ function Posts() {
   const [post, setPost] = useState({
     userId: currentUser,
     content: "",
-    imageUrl: "",
+    image: "",
     replyPostIds: [],
     date: "unknown",
     time: "",
@@ -29,6 +29,7 @@ function Posts() {
     // toggle the edit state
     // it also clears the field in case the user opens it again
     post.content = "";
+    post.image = ""
 
     setShowModal((current) => !current);
   };
@@ -83,9 +84,12 @@ function Posts() {
         return (
           <Card key={id}>
             <Card.Body>{post.content}</Card.Body>
-            <Card.Body>
-              <img src={post.image} height="120" width="120" />
-            </Card.Body>
+            {post.image && (
+              <Card.Body>
+                <img src={post.image} height="120" width="120" />
+              </Card.Body>
+            )}
+
             <Card.Footer className="d-flex justify-content-between">
               <div>Posted by: {name}</div>{" "}
               <div>
