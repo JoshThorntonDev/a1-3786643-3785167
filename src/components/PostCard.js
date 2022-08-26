@@ -5,18 +5,15 @@ import { PencilSquare } from "react-bootstrap-icons";
 import { deletePost } from "../data/PostRepository";
 
 function PostCard(props) {
-  console.log(props);
+
   return (
     <Card>
       <Card.Body>{props.content}</Card.Body>
       {props.image && ( // only render <hr> and <img> if the post actually has an image
         <Card.Body>
           <hr />
-          <img
-            variant="bottom"
-            alt="Uploaded by a user"
-            src={props.image}
-          />
+          
+          <img variant="bottom" alt="Uploaded by a user" src={props.image} />
         </Card.Body>
       )}
 

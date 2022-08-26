@@ -1,7 +1,6 @@
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { useRef, useState } from "react";
-import { updateUser, getUsers } from "../data/Repository";
 import { CheckCircleFill } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import AnimatedAlert from "./AnimatedAlert";
@@ -25,6 +24,9 @@ function PostCreator(props) {
     setMessage(""); // clear error message
     setError(false); // reset error state
     event.preventDefault(); // prevent form from submitting
+    if (props.fields.image !== "") {
+      console.log('need to impl file type check')
+    }
 
     if (props.fields.content !== "" && props.fields.content.length <= 250) {
       // ensure content is valid
@@ -57,6 +59,7 @@ function PostCreator(props) {
             <Form.Control
               name="content"
               type="text"
+              placeholder="Your thoughts?"
               autoFocus
               maxLength={250}
               value={props.fields.content}
@@ -66,10 +69,11 @@ function PostCreator(props) {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Image URL (optional)</Form.Label>
+            <Form.Label>Image URL</Form.Label>
             <Form.Control
               name="image"
               type="text"
+              placeholder="optional.jpg"
               value={props.fields.image}
               onChange={handleInputChange}
             />
