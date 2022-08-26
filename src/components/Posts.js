@@ -72,7 +72,6 @@ function Posts() {
       </Form> */}
 
       {Object.keys(posts).map((id) => {
-        console.log(id);
         const post = posts[id];
         var name = "";
         if (post.userId === "[deleted]") {
@@ -82,7 +81,7 @@ function Posts() {
         }
 
         return (
-          <Card>
+          <Card key={id}>
             <Card.Body>{post.content}</Card.Body>
             <Card.Body>
               <img src={post.image} height="120" width="120" />
