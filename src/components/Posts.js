@@ -1,11 +1,10 @@
-import Form from "react-bootstrap/Form";
-import { getPosts, insertPost } from "../data/PostRepository";
+import { getPosts } from "../data/PostRepository";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import { getUser } from "../data/Repository";
 import "./Posts.css";
-import PostList from "./PostList";
+
 import PostCreator from "./PostCreator";
 import { PencilSquare, PlusCircleFill } from "react-bootstrap-icons";
 import { deletePost } from "../data/PostRepository";
@@ -23,19 +22,6 @@ function Posts() {
     date: "unknown",
     time: "",
   });
-
-  const handleInputChange = (event) => {
-    setPost({
-      ...post,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setPost({ ...post, content: "" });
-    insertPost(post, currentUser);
-  };
 
   const [showModal, setShowModal] = useState(false);
 
@@ -86,6 +72,7 @@ function Posts() {
       </Form> */}
 
       {Object.keys(posts).map((id) => {
+        console.log(id);
         const post = posts[id];
         var name = "";
         if (post.userId === "[deleted]") {
@@ -99,12 +86,19 @@ function Posts() {
             <Card.Body>{post.content}</Card.Body>
             <Card.Footer className="d-flex justify-content-between">
               <div>Posted by: {name}</div>{" "}
-              <div className="postButton">
-                <Button size="sm" disabled variant="info"><PencilSquare /> Edit</Button>{" "}
-                <Button size="sm" onClick={() => deletePost(id)} variant="danger">Delete</Button>
-              </div>
               <div>
-                {" "}
+                <span className="postButton">
+                  <Button size="sm" disabled variant="info">
+                    <PencilSquare /> Edit
+                  </Button>{" "}
+                  <Button
+                    size="sm"
+                    onClick={() => deletePost(id)}
+                    variant="danger"
+                  >
+                    Delete
+                  </Button>
+                </span>{" "}
                 {post.date} | {post.time}
               </div>
             </Card.Footer>
