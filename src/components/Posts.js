@@ -17,7 +17,7 @@ function Posts() {
   const [post, setPost] = useState({
     userId: currentUser,
     content: "",
-    image: null,
+    image: "",
     replyPostIds: [],
     date: "unknown",
     time: "",
@@ -29,6 +29,7 @@ function Posts() {
     // toggle the edit state
     // it also clears the field in case the user opens it again
     post.content = "";
+    post.image = "";
 
     setShowModal((current) => !current);
   };

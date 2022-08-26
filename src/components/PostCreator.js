@@ -69,7 +69,7 @@ function PostCreator(props) {
             <Form.Control
               name="image"
               type="file"
-              value={props.fields.file}
+              value={props.fields.image}
               onChange={handleInputChange}
             />
           </Form.Group>
