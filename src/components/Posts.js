@@ -29,7 +29,9 @@ function Posts() {
     // toggle the edit state
     // it also clears the field in case the user opens it again
     post.content = "";
-    post.image = ""
+
+    post.image = "";
+
 
     setShowModal((current) => !current);
   };
