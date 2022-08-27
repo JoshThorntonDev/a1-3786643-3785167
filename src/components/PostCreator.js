@@ -76,16 +76,16 @@ function PostCreator(props) {
             </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Image URL</Form.Label>
+            <Form.Label>Image URL (Optional)</Form.Label>
             <Form.Control
               name="image"
               type="text"
-              placeholder="optional.jpg"
+              placeholder="example.com/file.jpg"
               value={props.fields.image}
               onChange={handleInputChange}
             />
             <Form.Text muted className="float-end">
-              This must be a direct link to an image file.
+              This is a direct link to an image, e.g. example.com/file.jpg
             </Form.Text>
           </Form.Group>
         </Modal.Body>
