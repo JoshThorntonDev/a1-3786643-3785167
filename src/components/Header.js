@@ -48,7 +48,7 @@ function Header({ logout }) {
           )}
 
           {currentUser ? (
-            <Button
+            <Button variant="secondary"
               onClick={() => {
                 logout();
                 navigate("/", {
