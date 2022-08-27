@@ -24,7 +24,7 @@ function Profile() {
   const [showModal, setShowModal] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
 
-  const toggleModal = () => {
+  const toggleEdit = () => {
     // toggle the edit state
     // it also clears the fields in case the user opens it again
     fields.name = "";
@@ -48,7 +48,7 @@ function Profile() {
     <div className="profile">
       <ProfileEditor
         show={showModal}
-        toggle={toggleModal}
+        toggle={toggleEdit}
         fields={fields}
         setFields={setFields}
       />
@@ -69,7 +69,7 @@ function Profile() {
       </div>
 
       <div className="edit">
-        <Button onClick={toggleModal} variant="primary" type="submit">
+        <Button onClick={toggleEdit} variant="primary" type="submit">
           <PencilSquare size={"2vh"}></PencilSquare> Edit
         </Button>
 
