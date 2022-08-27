@@ -9,6 +9,7 @@ import { insertPost } from "../data/PostRepository";
 function PostCreator(props) {
   const currentUser = localStorage.getItem("currentUser");
   const inputRef = useRef(null);
+  const imageRef = useRef(null);
 
   const handleInputChange = (event) => {
     props.setFields({
@@ -21,26 +22,39 @@ function PostCreator(props) {
   const [message, setMessage] = useState("");
 
   const attemptSave = (event) => {
-    //const imageRegex = new RegExp('(.png|.jpg|.jpeg|.gif|.bmp)$');
-    //if (props.fields.image !== "" && imageRegex.test(props.fields.image))
-
+    const imageRegex = new RegExp('(.png|.jpg|.jpeg|.gif|.bmp)$');
+    
     setMessage(""); // clear error message
     setError(false); // reset error state
     event.preventDefault(); // prevent form from submitting
-    if (props.fields.image !== "") {
-      console.log("need to impl file type check");
+    
+    var imageOK = false
+    if (props.fields.image === "") { // no image, so no need to check if its a picture
+      imageOK = true
+    } else if (props.fields.image !== "" && imageRegex.test(props.fields.image)) {
+       // if there is a url, check if it ends with .png, .jpg/jpeg, .gif or .bmp
+       // this doesn't absolutely ensure that a url points to an image, but it'll prevent most invalid submissions
+      imageOK = true
     }
+      
+    
 
-    if (props.fields.content !== "" && props.fields.content.length <= 250) {
-      // ensure content is valid
-      props.setFields({ ...props.fields, content: "" });
+    if (props.fields.content !== "" && props.fields.content.length <= 250 && imageOK) {
+      // ensure content exists and isnt too large, and that the image url is valid
       insertPost(props.fields, currentUser);
       props.toggle(); // close modal
       setMessage("");
     } else {
-      setMessage("Sorry, that post is invalid");
+      
       setError(true);
-      inputRef.current.focus(); // focus on name entry field
+      if (imageOK) {
+        inputRef.current.focus(); // focus on post entry field
+        setMessage("Posts must be between 1 and 250 characters");
+      } else {
+        imageRef.current.focus(); // focus on image entry field
+        setMessage("Sorry, your URL is invalid, supported URLs end with one of the following: .jpg | .jpeg | .png | .gif | .bmp");
+      }
+      
     }
   };
 
@@ -83,6 +97,7 @@ function PostCreator(props) {
               placeholder="example.com/file.jpg"
               value={props.fields.image}
               onChange={handleInputChange}
+              ref={imageRef}
             />
             <Form.Text muted className="float-end">
               This must be a direct link to an image.
