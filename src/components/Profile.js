@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import { getUsers } from "../data/Repository";
 
 import { PencilSquare, PersonCircle, Trash } from "react-bootstrap-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProfileEditor from "./ProfileEditor";
 import ProfileDeleter from "./ProfileDeleter";
 import { getAllPostsByUser } from "../data/PostRepository";
@@ -43,6 +43,12 @@ function Profile() {
     fields.password = "";
     setShowDelete((current) => !current);
   };
+
+  const [deleted, setDeleted] = useState(false);
+
+  useEffect(() => {
+    setDeleted(false);
+  }, [deleted]);
 
   return (
     <div>
@@ -93,7 +99,14 @@ function Profile() {
           const post = posts[id];
 
           return (
-            <PostCard className="smallCards" key={id} id={id} post={post} />
+            <PostCard
+              className="smallCards"
+              key={id}
+              id={id}
+              post={post}
+              setDeleted={setDeleted}
+              allowDelete={true}
+            />
           );
         })
       )}

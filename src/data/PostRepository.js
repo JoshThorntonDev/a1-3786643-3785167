@@ -34,6 +34,7 @@ function insertPost(post, currentUser) {
     const posts = getPosts();
 
     var id = getNewID();
+    post.postId = id; // also store id inside post so we can safely store them in arrays without losing their id
     posts[id] = post;
 
     setPosts(posts);

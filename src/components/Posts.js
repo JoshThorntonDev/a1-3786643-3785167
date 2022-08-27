@@ -20,6 +20,7 @@ function Posts() {
     replyPostIds: [],
     date: "unknown",
     time: "",
+    postId: "",
   });
 
   const [showModal, setShowModal] = useState(false);
@@ -61,6 +62,7 @@ function Posts() {
             key={id}
             id={id}
             post={post}
+            allowDelete={false}
           />
         );
       })}

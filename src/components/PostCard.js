@@ -6,7 +6,6 @@ import { deletePost } from "../data/PostRepository";
 import { getUser } from "../data/Repository";
 
 function PostCard(props) {
-
   var name = "";
 
   // deal with some posts not being linked with an existing profile, and provide a placeholder name
@@ -22,26 +21,35 @@ function PostCard(props) {
       {props.post.image && ( // only render <hr> and <img> if the post actually has an image
         <Card.Body>
           <hr />
-          
-          <img variant="bottom" alt="Uploaded by a user" src={props.post.image} />
+
+          <img
+            variant="bottom"
+            alt="Uploaded by a user"
+            src={props.post.image}
+          />
         </Card.Body>
       )}
 
       <Card.Footer className="d-flex justify-content-between">
         <div>Posted by: {name}</div>{" "}
         <div>
-          <span className="postButton">
-            <Button size="sm" disabled variant="info">
-              <PencilSquare /> Edit
-            </Button>{" "}
-            <Button
-              size="sm"
-              onClick={() => deletePost(props.id)}
-              variant="danger"
-            >
-              Delete
-            </Button>
-          </span>{" "}
+          {props.allowDelete && (
+            <span className="postButton">
+              <Button size="sm" disabled variant="info">
+                <PencilSquare /> Edit
+              </Button>{" "}
+              <Button
+                size="sm"
+                onClick={() => {
+                  deletePost(props.post.postId);
+                  props.setDeleted(true);
+                }}
+                variant="danger"
+              >
+                Delete
+              </Button>
+            </span>
+          )}{" "}
           {props.post.date} | {props.post.time}
         </div>
       </Card.Footer>
