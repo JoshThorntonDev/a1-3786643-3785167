@@ -1,6 +1,8 @@
 //Code adapted from Week 5 Practical Activity 1 'repository.js'
 
-import { assignPostToUser } from "./Repository";
+// this file includes functions that read and write to posts in storage
+
+import { assignPostToUser, getUser } from "./Repository";
 
 const POSTS_KEY = "posts";
 
@@ -39,10 +41,10 @@ function insertPost(post, currentUser) {
   }
 }
 
-function getPost(id) {
+function getPost(id) { //return a single post
   const posts = getPosts();
 
-  return posts[id]
+  return posts[id];
 }
 
 function deletePost(id) {
@@ -55,8 +57,31 @@ function deletePost(id) {
   setPosts(posts);
 }
 
+function getAllPostsByUser(userid) { // returns all posts made by userid, except ones that have been marked as deleted
+  var postids = getUser(userid).posts;
+  var posts = [];
+
+  postids.forEach((i) => {
+    var post = getPost(i);
+    if (post.userId !== "[deleted]") {
+      // when a post is deleted, the user's account still keeps the id stored in case its needed, (eg for reporting)
+      // so we check if the post has been "deleted" before sending it back
+      posts.push(post);
+    }
+  });
+
+  return posts;
+}
+
 function getNewID() {
   return crypto.randomUUID();
 }
 
-export { initPosts, getPosts, insertPost, deletePost, getPost };
+export {
+  initPosts,
+  getPosts,
+  insertPost,
+  deletePost,
+  getPost,
+  getAllPostsByUser,
+};

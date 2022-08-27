@@ -6,11 +6,18 @@ import { PencilSquare, PersonCircle, Trash } from "react-bootstrap-icons";
 import { useState } from "react";
 import ProfileEditor from "./ProfileEditor";
 import ProfileDeleter from "./ProfileDeleter";
-import { getPost } from "../data/PostRepository";
+import { getAllPostsByUser } from "../data/PostRepository";
+import PostCard from "./PostCard";
 
 function Profile() {
   const users = getUsers();
   const currentUser = localStorage.getItem("currentUser");
+
+  const posts = getAllPostsByUser(currentUser);
+  // this is used to get all the posts and display them on this profile page
+  // currentUser could be changed to display posts of other users if accessing other profiles becomes a requirement
+
+
   const [fields, setFields] = useState({
     // a field storing all possible user data, currently only name is editable
     email: users[currentUser].email,
@@ -38,52 +45,52 @@ function Profile() {
     setShowDelete((current) => !current);
   };
 
-  users[currentUser].posts.forEach(element => {
-    console.log(element + " LOOK AT ME YOU NEED TO DO THIS NOW")
-  });
-  
-
   return (
     <div>
-    <div className="profile">
-      <ProfileEditor
-        show={showModal}
-        toggle={toggleEdit}
-        fields={fields}
-        setFields={setFields}
-      />
+      <div className="profile">
+        <ProfileEditor
+          show={showModal}
+          toggle={toggleEdit}
+          fields={fields}
+          setFields={setFields}
+        />
 
-      <ProfileDeleter
-        show={showDelete}
-        toggle={toggleDelete}
-        fields={fields}
-        setFields={setFields}
-      />
-      <PersonCircle size={"10vh"} className="image"></PersonCircle>
+        <ProfileDeleter
+          show={showDelete}
+          toggle={toggleDelete}
+          fields={fields}
+          setFields={setFields}
+        />
+        <PersonCircle size={"10vh"} className="image"></PersonCircle>
 
-      <div className="information">
-        <h1>{users[currentUser].name}'s Profile</h1>
-        <p>{users[currentUser].email}</p>
-        <hr />
-        <p>Joined: {users[currentUser].date}</p>
+        <div className="information">
+          <h1>{users[currentUser].name}'s Profile</h1>
+          <p>{users[currentUser].email}</p>
+          <hr />
+          <p>Joined: {users[currentUser].date}</p>
+        </div>
+
+        <div className="edit">
+          <Button onClick={toggleEdit} variant="primary" type="submit">
+            <PencilSquare size={"2vh"}></PencilSquare> Edit
+          </Button>
+
+          <Button onClick={toggleDelete} variant="danger" type="submit">
+            <Trash size={"2vh"}></Trash> Delete
+          </Button>
+        </div>
       </div>
 
-      <div className="edit">
-        <Button onClick={toggleEdit} variant="primary" type="submit">
-          <PencilSquare size={"2vh"}></PencilSquare> Edit
-        </Button>
+      <hr />
 
-        <Button onClick={toggleDelete} variant="danger" type="submit">
-          <Trash size={"2vh"}></Trash> Delete
-        </Button>
-      </div>
-      
+      <h3>All posts by {users[currentUser].name}</h3>
+
+      {Object.keys(posts).map((id) => {
+        const post = posts[id];
+
+        return <PostCard className="smallCards" key={id} id={id} post={post} />;
+      })}
     </div>
-    
-
-    
-    </div>
-
   );
 }
 

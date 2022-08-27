@@ -1,7 +1,6 @@
 import { getPosts } from "../data/PostRepository";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
-import { getUser } from "../data/Repository";
 import "./Posts.css";
 
 import PostCreator from "./PostCreator";
@@ -57,24 +56,11 @@ function Posts() {
       {Object.keys(posts).map((id) => {
         const post = posts[id];
 
-        var name = "";
-
-        // deal with some posts not being linked with an existing profile, and provide a placeholder name
-        if (post.userId === "[deleted]") {
-          name = "[deleted]";
-        } else {
-          name = getUser(post.userId).name;
-        }
-
         return (
           <PostCard
             key={id}
-            name={name}
-            content={post.content}
-            image={post.image}
-            date={post.date}
-            time={post.time}
             id={id}
+            post={post}
           />
         );
       })}

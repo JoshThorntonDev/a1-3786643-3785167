@@ -1,5 +1,7 @@
 //Code adapted from Week 5 Practical Activity 1 'repository.js'
 
+// this file includes functions that read and write to users in storage
+
 import { deletePost } from "./PostRepository";
 
 const USERS_KEY = "users";
