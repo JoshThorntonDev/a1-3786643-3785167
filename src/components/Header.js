@@ -11,19 +11,16 @@ function Header({ logout }) {
   return (
     <Navbar className="headerNav" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand>Loop Agile Now</Navbar.Brand>
+        <Navbar.Brand
+          className="headerLogo"
+          onClick={() => {
+            navigate("/", {
+              replace: true,
+            });
+          }}
+          >Loop Agile Now</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
-          <Button
-            variant="danger"
-            onClick={() => {
-              navigate("/", {
-                replace: true,
-              });
-            }}
-          >
-            Home (temp.)
-          </Button>
 
           {currentUser && (
             <div>
