@@ -59,7 +59,7 @@ function PostCreator(props) {
       <Form onSubmit={attemptSave}>
         <Modal.Body>
           <Form.Group className="mb-3">
-            <Form.Label>Max length: 250 characters</Form.Label>
+            <Form.Label>Max length: 250 characters ({250 - props.fields.content.length} remaining)</Form.Label>
             <Form.Control
               name="content"
               type="text"
