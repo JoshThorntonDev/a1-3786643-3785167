@@ -15,7 +15,7 @@ function PostCard(props) {
   } else {
     name = getUser(props.post.userId).name;
   }
-  console.log(props.id)
+
   return (
     <Card>
       <Card.Body>{props.post.content}</Card.Body>
