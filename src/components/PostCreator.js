@@ -21,6 +21,10 @@ function PostCreator(props) {
   const [message, setMessage] = useState("");
 
   const attemptSave = (event) => {
+    //const imageRegex = new RegExp('(.png|.jpg|.jpeg|.gif|.bmp)$');
+    //if (props.fields.image !== "" && imageRegex.test(props.fields.image))
+
+
     setMessage(""); // clear error message
     setError(false); // reset error state
     event.preventDefault(); // prevent form from submitting
