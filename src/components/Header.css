@@ -5,3 +5,7 @@
 nav {
   margin-bottom: 1em;
 }
+
+.headerLogo {
+  cursor: pointer;
+}
