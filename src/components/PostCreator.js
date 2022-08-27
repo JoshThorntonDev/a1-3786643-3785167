@@ -7,7 +7,7 @@ import AnimatedAlert from "./AnimatedAlert";
 import { insertPost } from "../data/PostRepository";
 
 function PostCreator(props) {
-    const currentUser = localStorage.getItem("currentUser");
+  const currentUser = localStorage.getItem("currentUser");
   const inputRef = useRef(null);
 
   const handleInputChange = (event) => {
@@ -24,18 +24,17 @@ function PostCreator(props) {
     //const imageRegex = new RegExp('(.png|.jpg|.jpeg|.gif|.bmp)$');
     //if (props.fields.image !== "" && imageRegex.test(props.fields.image))
 
-
     setMessage(""); // clear error message
     setError(false); // reset error state
     event.preventDefault(); // prevent form from submitting
     if (props.fields.image !== "") {
-      console.log('need to impl file type check')
+      console.log("need to impl file type check");
     }
 
     if (props.fields.content !== "" && props.fields.content.length <= 250) {
       // ensure content is valid
-        props.setFields({...props.fields, content: ""})
-        insertPost(props.fields, currentUser)
+      props.setFields({ ...props.fields, content: "" });
+      insertPost(props.fields, currentUser);
       props.toggle(); // close modal
       setMessage("");
     } else {
@@ -59,10 +58,11 @@ function PostCreator(props) {
       <Form onSubmit={attemptSave}>
         <Modal.Body>
           <Form.Group className="mb-3">
-            <Form.Label>Max length: 250 characters ({250 - props.fields.content.length} remaining)</Form.Label>
+            <Form.Label>Enter text here</Form.Label>
             <Form.Control
               name="content"
-              type="text"
+              as="textarea"
+              rows={6} /* 6 fits all 250 chars in the box at once */
               placeholder="Your thoughts?"
               autoFocus
               maxLength={250}
@@ -71,6 +71,9 @@ function PostCreator(props) {
               required
               ref={inputRef}
             />
+            <Form.Text muted className="float-end">
+              {props.fields.content.length} / 250
+            </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Image URL</Form.Label>
@@ -81,6 +84,9 @@ function PostCreator(props) {
               value={props.fields.image}
               onChange={handleInputChange}
             />
+            <Form.Text muted className="float-end">
+              This must be a direct link to an image file.
+            </Form.Text>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
