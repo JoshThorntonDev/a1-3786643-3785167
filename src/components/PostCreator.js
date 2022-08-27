@@ -85,7 +85,7 @@ function PostCreator(props) {
               onChange={handleInputChange}
             />
             <Form.Text muted className="float-end">
-              This is a direct link to an image, e.g. example.com/file.jpg
+              This must be a direct link to an image.
             </Form.Text>
           </Form.Group>
         </Modal.Body>
