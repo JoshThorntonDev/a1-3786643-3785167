@@ -18,14 +18,15 @@ function Header({ logout }) {
               replace: true,
             });
           }}
-          >Loop Agile Now</Navbar.Brand>
+        >
+          Loop Agile Now
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
-
           {currentUser && (
             <div>
               <Button
-                variant="primary"
+                variant="success"
                 onClick={() => {
                   navigate("/posts", {
                     replace: false,
@@ -48,7 +49,8 @@ function Header({ logout }) {
           )}
 
           {currentUser ? (
-            <Button variant="secondary"
+            <Button
+              variant="secondary"
               onClick={() => {
                 logout();
                 navigate("/", {

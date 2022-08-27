@@ -17,7 +17,6 @@ function Profile() {
   // this is used to get all the posts and display them on this profile page
   // currentUser could be changed to display posts of other users if accessing other profiles becomes a requirement
 
-
   const [fields, setFields] = useState({
     // a field storing all possible user data, currently only name is editable
     email: users[currentUser].email,
@@ -85,11 +84,19 @@ function Profile() {
 
       <h3>All posts by {users[currentUser].name}</h3>
 
-      {Object.keys(posts).map((id) => {
-        const post = posts[id];
+      {posts.length === 0 ? (
+        <div className="d-flex justify-content-center">
+          <h5 className="text-muted">This user has no existing posts</h5>
+        </div>
+      ) : (
+        Object.keys(posts).map((id) => {
+          const post = posts[id];
 
-        return <PostCard className="smallCards" key={id} id={id} post={post} />;
-      })}
+          return (
+            <PostCard className="smallCards" key={id} id={id} post={post} />
+          );
+        })
+      )}
     </div>
   );
 }
