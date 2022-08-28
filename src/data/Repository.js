@@ -42,6 +42,7 @@ function insertUser(user) {
 
 function updateUser(user) {
   const users = getUsers();
+  user.posts = users[user.email].posts // copy post ids to new user
 
   users[user.email] = user;
 
