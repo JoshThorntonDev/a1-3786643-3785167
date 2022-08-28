@@ -1,7 +1,7 @@
 import { getPosts } from "../data/PostRepository";
 import Button from "react-bootstrap/Button";
 import { useContext, useState } from "react";
-import "./Posts.css";
+import "./css/Posts.css";
 
 import PostCreator from "./PostCreator";
 import { PlusCircleFill } from "react-bootstrap-icons";

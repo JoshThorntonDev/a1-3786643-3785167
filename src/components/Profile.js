@@ -1,4 +1,4 @@
-import "./Profile.css";
+import "./css/Profile.css";
 import Button from "react-bootstrap/Button";
 import { getUsers } from "../data/Repository";
 

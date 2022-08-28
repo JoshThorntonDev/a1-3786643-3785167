@@ -1,4 +1,4 @@
-import "./Login.css";
+import "./css/Login.css";
 
 // bootstrap for styling
 import Form from "react-bootstrap/Form";

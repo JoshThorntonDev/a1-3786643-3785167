@@ -1,5 +1,5 @@
 import Carousel from "react-bootstrap/Carousel";
-import "./Landing.css";
+import "./css/Landing.css";
 
 function Landing() {
   return (

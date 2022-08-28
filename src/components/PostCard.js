@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import "./Posts.css";
+import "./css/Posts.css";
 import { PencilSquare } from "react-bootstrap-icons";
 import { deletePost, updatePost } from "../data/PostRepository";
 import { getUser } from "../data/Repository";
