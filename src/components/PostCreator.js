@@ -6,7 +6,6 @@ import Button from "react-bootstrap/Button";
 import AnimatedAlert from "./AnimatedAlert";
 import { insertPost } from "../data/PostRepository";
 import UserContext from "../contexts/UserContext";
-import { updatePost } from "../data/PostRepository";
 
 // this component can create and edit posts. By default, it will only create, but setting the prop 'editing' to true
 // will put it in editing mode
@@ -51,15 +50,7 @@ function PostCreator(props) {
       props.fields.content.length <= 250 &&
       imageOK
     ) {
-      if (props.editing) {
-        // are we updating a post or making a new one?
-        updatePost(props.fields);
-      } else {
-        insertPost(props.fields, currentUser);
-        // currentUser is used to add the new post id to the user, allowing us
-        // to easily find it again
-      }
-
+      insertPost(props.fields, currentUser); // function will determine if its being edited or not based on if it already has an id
       props.toggle(); // close modal
       setMessage("");
     } else {
@@ -90,7 +81,9 @@ function PostCreator(props) {
       <Form onSubmit={attemptSave}>
         <Modal.Body>
           <Form.Group className="mb-3">
-            <Form.Label>Enter text here</Form.Label>
+            <Form.Label>
+              {props.editing ? "Update your" : "Enter your"} post here
+            </Form.Label>
             <Form.Control
               name="content"
               as="textarea"

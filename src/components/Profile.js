@@ -29,8 +29,8 @@ function Profile() {
   // the field is stored here to make it easier to clear the values when the modal is closed,
   // either by closing it manually or when an update is successful
 
-  const [showEdit, setShowEdit] = useState(false);
-  const [showDelete, setShowDelete] = useState(false);
+  const [showEdit, setShowEdit] = useState(false); // state for profile edit modal
+  const [showDelete, setShowDelete] = useState(false); // state for profile delete modal
 
   const toggleEdit = () => {
     // toggle the edit state

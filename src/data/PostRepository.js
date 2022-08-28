@@ -30,38 +30,29 @@ function insertPost(post, currentUser) {
     let currentDate = new Date();
 
     post.date = currentDate.toLocaleString().split(",")[0]; // 0 makes it only the date
-    post.time = currentDate.toLocaleString().split(",")[1]; // 1 makes it only the time
+    post.time = currentDate.toLocaleString().split(", ")[1]; // 1 makes it only the time, the space prevents it ending up in the time string
+
     const posts = getPosts();
+    if(!post.postId) { // if post doesnt have an id, generate one
+      var id = getNewID();
+      post.postId = id; // store id inside post so we can safely store them in arrays without losing their id
 
-    var id = getNewID();
-    post.postId = id; // also store id inside post so we can safely store them in arrays without losing their id
-    posts[id] = post;
+      assignPostToUser(currentUser, id); // store id inside the user as well
+      posts[id] = post; // target the position assigned to the new post
 
-    setPosts(posts);
-    assignPostToUser(currentUser, id);
+    } else { // if it does have an id, it means we're editing an existing one, so put it back in storage
+      posts[post.postId] = post; // target posts original position
+    }
+
+    setPosts(posts); // save
+
   }
 }
 
-function updatePost(post) {
-  //Retrieve Posts, update a post , and call setPosts
-
-  if (post.content !== "") {
-    let currentDate = new Date();
-
-    post.date = currentDate.toLocaleString().split(",")[0]; // 0 makes it only the date
-    post.time = currentDate.toLocaleString().split(",")[1]; // 1 makes it only the time
-    const posts = getPosts();
-
-    posts[post.postId] = post;
-
-    setPosts(posts);
-  }
-}
 
 function getPost(id) {
   //return a single post
   const posts = getPosts();
-
   return posts[id];
 }
 
@@ -93,7 +84,7 @@ function getAllPostsByUser(userid) {
   return posts;
 }
 
-function getNewID() {
+function getNewID() { // just generate a random string of characters
   return crypto.randomUUID();
 }
 
@@ -102,7 +93,6 @@ export {
   getPosts,
   insertPost,
   deletePost,
-  updatePost,
   getPost,
   getAllPostsByUser,
 };
