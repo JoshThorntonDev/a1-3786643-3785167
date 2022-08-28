@@ -18,7 +18,7 @@ import UserContext from "../contexts/UserContext";
 // setFields
 function ProfileDeleter(props) {
   const users = getUsers();
-  const currentUser = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   // get users and current user so we dont have to have ugly things like props.users[props.currentUser].password
 
   const passwordRef = useRef(null);
@@ -40,6 +40,8 @@ function ProfileDeleter(props) {
     setError(false); // reset error state
     event.preventDefault(); // prevent form from submitting
 
+    console.log(currentUser);
+    console.log(users[currentUser])
     //check if password is correct
     if (props.fields.password === users[currentUser].password) {
       //if password is correct, delete the user from local storage,
