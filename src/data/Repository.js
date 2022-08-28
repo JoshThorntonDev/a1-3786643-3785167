@@ -35,7 +35,7 @@ function insertUser(user) {
   //Retrieve users, add new users to the list, and call setUsers
   const users = getUsers();
 
-  users[user.email] = user;
+  users[user.email] = user; // currently, email is primary key, could be a uuid
 
   setUsers(users);
 }
@@ -51,7 +51,7 @@ function updateUser(user) {
 function assignPostToUser(user, postId) {
   const users = getUsers();
 
-  users[user].posts.push(postId);
+  users[user].posts.push(postId); // put id of a post in the posts list in the specified user
 
   setUsers(users);
 }
