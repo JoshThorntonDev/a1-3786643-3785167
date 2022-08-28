@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import "./css/Posts.css";
-import { PencilSquare } from "react-bootstrap-icons";
+import { PencilSquare, Trash } from "react-bootstrap-icons";
 import { deletePost } from "../data/PostRepository";
 import { getUser } from "../data/Repository";
 import { useState } from "react";
@@ -73,7 +73,7 @@ function PostCard(props) {
                 }}
                 variant="danger"
               >
-                Delete
+                <Trash /> Delete
               </Button>
             </span>
           )}{" "}

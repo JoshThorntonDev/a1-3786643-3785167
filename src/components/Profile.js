@@ -8,7 +8,7 @@ import ProfileDeleter from "./ProfileDeleter";
 import { getAllPostsByUser } from "../data/PostRepository";
 import PostCard from "./PostCard";
 import UserContext from "../contexts/UserContext";
-
+import Card from "react-bootstrap/Card"
 
 function Profile() {
   const users = getUsers();
@@ -55,7 +55,7 @@ function Profile() {
   return (
     <div>
       
-      <div className="profile">
+      <Card border="secondary" className="profile">
         <ProfileEditor
           show={showEdit}
           toggle={toggleEdit}
@@ -87,7 +87,7 @@ function Profile() {
             <Trash size={"2vh"}></Trash> Delete
           </Button>
         </div>
-      </div>
+      </Card>
 
       <hr />
 

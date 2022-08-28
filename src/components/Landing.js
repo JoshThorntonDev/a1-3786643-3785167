@@ -8,7 +8,7 @@ import UserContext from "../contexts/UserContext";
 
 function Landing() {
   const navigate = useNavigate();
-  const { currentUser, logout } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   return (
     <div>
