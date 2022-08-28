@@ -4,6 +4,7 @@ import "./css/Login.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Card from "react-bootstrap/Card";
 
 import AnimatedAlert from "./AnimatedAlert";
 
@@ -50,8 +51,10 @@ function Login() {
   };
 
   return (
+    <Card>
+      <Card.Header><h2 className="mb-1 d-flex justify-content-center">Sign In</h2></Card.Header>
     <Form className="mb-3 loginForm" onSubmit={attemptLogin}>
-      <h1 className="mb-3 d-flex justify-content-center">Sign In</h1>
+      
 
       <AnimatedAlert
         variant="danger"
@@ -101,6 +104,7 @@ function Login() {
         </Button>
       </div>
     </Form>
+    </Card>
   );
 }
 

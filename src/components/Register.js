@@ -2,7 +2,7 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-
+import Card from "react-bootstrap/Card";
 import AnimatedAlert from "./AnimatedAlert";
 import { insertUser } from "../data/Repository.js";
 import { validate } from "./RegisterValidation.js";
@@ -68,59 +68,64 @@ function Register() {
   };
 
   return (
-    <Form className="mb-3 loginForm" onSubmit={handleSubmit}>
-      <h1 className="mb-3 d-flex justify-content-center">Sign Up</h1>
-      <AnimatedAlert
-        variant="danger"
-        message={message}
-        display={error}
-        setDisplay={setError}
-      />
-      <AnimatedAlert
-        variant="success"
-        message="Account creation successful!"
-        display={show}
-        setDisplay={setShow}
-      />
-      <FloatingLabel label="Name" className="mb-3">
-        <Form.Control
-          type="text"
-          name="name"
-          placeholder="name"
-          value={user.name}
-          onChange={handleInputChange}
-          maxLength={NAME_LENGTH}
+    <Card>
+      <Card.Header>
+        <h2 className="mb-1 d-flex justify-content-center">Sign Up</h2>
+      </Card.Header>
+      <Form className="mb-3 loginForm" onSubmit={handleSubmit}>
+        <AnimatedAlert
+          variant="danger"
+          message={message}
+          display={error}
+          setDisplay={setError}
         />
-        <Form.Text muted className="float-end">
-          {user.name.trim().length} / {NAME_LENGTH}
-          {/* .trim() prevents the counter increasing when the text starts and ends with whitespace */}
-        </Form.Text>
-      </FloatingLabel>
-      <br />
-      <FloatingLabel label="Email" className="mb-3">
-        <Form.Control
-          type="email"
-          name="email"
-          placeholder="email"
-          value={user.email}
-          onChange={handleInputChange}
+        <AnimatedAlert
+          variant="success"
+          message="Account creation successful!"
+          display={show}
+          setDisplay={setShow}
         />
-      </FloatingLabel>
-      <FloatingLabel label="Password" className="mb-3">
-        <Form.Control
-          type="password"
-          name="password"
-          placeholder="password"
-          value={user.password}
-          onChange={handleInputChange}
-        />
-      </FloatingLabel>
-      <div className="d-flex justify-content-center">
-        <Button variant="primary" type="submit">
-          Create Account
-        </Button>
-      </div>
-    </Form>
+        <FloatingLabel label="Name" className="mb-3">
+          <Form.Control
+            type="text"
+            name="name"
+            placeholder="name"
+            value={user.name}
+            onChange={handleInputChange}
+            maxLength={NAME_LENGTH}
+          />
+          <Form.Text muted className="float-end">
+            {user.name.trim().length} / {NAME_LENGTH}
+            {/* .trim() prevents the counter increasing when the text starts and ends with whitespace */}
+          </Form.Text>
+        </FloatingLabel>
+        <br />
+        <FloatingLabel label="Email" className="mb-3">
+          <Form.Control
+            type="email"
+            name="email"
+            placeholder="email"
+            value={user.email}
+            onChange={handleInputChange}
+          />
+        </FloatingLabel>
+        <hr></hr>
+        <FloatingLabel label="Password" className="mb-3">
+          <Form.Control
+            type="password"
+            name="password"
+            placeholder="password"
+            value={user.password}
+            onChange={handleInputChange}
+          />
+        </FloatingLabel>
+        <div className="d-flex justify-content-center">
+          <Button variant="success" type="submit">
+            Create Account
+          </Button>
+        </div>
+      </Form>
+    </Card>
   );
 }
 
