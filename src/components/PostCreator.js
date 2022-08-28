@@ -39,9 +39,8 @@ function PostCreator(props) {
     }
       
     
-
-    if (props.fields.content !== "" && props.fields.content.length <= 250 && imageOK) {
-      // ensure content exists and isnt too large, and that the image url is valid
+    if (props.fields.content.trim() !== "" && props.fields.content.length <= 250 && imageOK) {
+      // ensure content exists, isnt just whitespace, isnt too large, and that the image url is valid
       insertPost(props.fields, currentUser);
       props.toggle(); // close modal
       setMessage("");
@@ -87,7 +86,8 @@ function PostCreator(props) {
               ref={inputRef}
             />
             <Form.Text muted className="float-end">
-              {props.fields.content.length} / 250
+              {props.fields.content.trim().length} / 250
+              {/* .trim() prevents the counter increasing when the post starts and ends with whitespace */}
             </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3">
