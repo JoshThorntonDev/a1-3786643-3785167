@@ -56,6 +56,7 @@ function deletePost(id) {
 
   posts[id].content = "[deleted]";
   posts[id].userId = "[deleted]";
+  posts[id].image = "[deleted]";
   setPosts(posts);
 }
 

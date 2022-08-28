@@ -24,7 +24,7 @@ function PostCard(props) {
 
           <img
             variant="bottom"
-            alt="Uploaded by a user"
+            alt={props.post.image === "[deleted]" ? "This image has been deleted" : "Posted by a user"}
             src={props.post.image}
           />
         </Card.Body>
