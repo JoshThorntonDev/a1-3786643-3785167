@@ -20,10 +20,11 @@ function Profile() {
 
   const [fields, setFields] = useState({
     // a field storing all possible user data, currently only name is editable
-    email: users[currentUser].email,
     name: "",
-    date: users[currentUser].date,
+    email: users[currentUser].email,
     password: "",
+    date: users[currentUser].date,
+    posts:[]
   });
   // the field is stored here to make it easier to clear the values when the modal is closed,
   // either by closing it manually or when an update is successful
@@ -45,11 +46,11 @@ function Profile() {
     setShowDelete((current) => !current);
   };
 
-  const [deleted, setDeleted] = useState(false);
+  const [altered, setAltered] = useState(false);
 
   useEffect(() => {
-    setDeleted(false);
-  }, [deleted]);
+    setAltered(false);
+  }, [altered]);
 
   return (
     <div>
@@ -105,7 +106,7 @@ function Profile() {
               key={id}
               id={id}
               post={post}
-              setDeleted={setDeleted}
+              setAltered={setAltered}
               allowDelete={true}
             />
           );

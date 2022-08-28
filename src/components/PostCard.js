@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import "./Posts.css";
 import { PencilSquare } from "react-bootstrap-icons";
-import { deletePost } from "../data/PostRepository";
+import { deletePost, updatePost } from "../data/PostRepository";
 import { getUser } from "../data/Repository";
 
 function PostCard(props) {
@@ -35,14 +35,18 @@ function PostCard(props) {
         <div>
           {props.allowDelete && (
             <span className="postButton">
-              <Button size="sm" disabled variant="info">
+              <Button size="sm" variant="info" onClick={() => {
+                props.post.content = "Edited wwawdwadadwadwadawdwadwadwadawdwadawdwawwwhaha"
+                updatePost(props.post)
+                props.setAltered(true)
+              }}>
                 <PencilSquare /> Edit
               </Button>{" "}
               <Button
                 size="sm"
                 onClick={() => {
                   deletePost(props.post.postId);
-                  props.setDeleted(true);
+                  props.setAltered(true);
                 }}
                 variant="danger"
               >

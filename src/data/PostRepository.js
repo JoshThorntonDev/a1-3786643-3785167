@@ -42,6 +42,22 @@ function insertPost(post, currentUser) {
   }
 }
 
+function updatePost(post) {
+  //Retrieve Posts, update a post , and call setPosts
+
+  if (post.content !== "") {
+    let currentDate = new Date();
+
+    post.date = currentDate.toLocaleString().split(",")[0]; // 0 makes it only the date
+    post.time = currentDate.toLocaleString().split(",")[1]; // 1 makes it only the time
+    const posts = getPosts();
+
+    posts[post.postId] = post;
+
+    setPosts(posts);
+  }
+}
+
 function getPost(id) {
   //return a single post
   const posts = getPosts();
@@ -86,6 +102,7 @@ export {
   getPosts,
   insertPost,
   deletePost,
+  updatePost,
   getPost,
   getAllPostsByUser,
 };
