@@ -38,7 +38,7 @@ function ProfileEditor(props) {
     setError(false); // reset error state
     event.preventDefault(); // prevent form from submitting
 
-    if (props.fields.name !== "" && props.fields.name.length <= 20) {
+    if (props.fields.name.trim() !== "" && props.fields.name.length <= 20) {
       //check if password is correct
       if (props.fields.password === users[currentUser].password) {
         // ensure name is valid
@@ -72,7 +72,7 @@ function ProfileEditor(props) {
       <Form onSubmit={attemptSave}>
         <Modal.Body>
           <Form.Group className="mb-3">
-            <Form.Label>New Username (Max: 20 characters)</Form.Label>
+            <Form.Label>New Username</Form.Label>
             <Form.Control
               name="name"
               type="text"
@@ -84,6 +84,10 @@ function ProfileEditor(props) {
               required
               ref={nameRef}
             />
+            <Form.Text muted className="float-end">
+              {props.fields.name.trim().length} / 20
+              {/* .trim() prevents the counter increasing when the post starts and ends with whitespace */}
+            </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Confirmation Password</Form.Label>
