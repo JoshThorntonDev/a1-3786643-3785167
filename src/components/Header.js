@@ -35,7 +35,7 @@ function Header() {
                   });
                 }}
               >
-                Posts
+                Feed
               </Button>
               <Button
                 variant="primary"

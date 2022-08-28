@@ -4,16 +4,26 @@ import "./Posts.css";
 import { PencilSquare } from "react-bootstrap-icons";
 import { deletePost, updatePost } from "../data/PostRepository";
 import { getUser } from "../data/Repository";
+import { useState } from "react";
+import PostCreator from "./PostCreator";
 
 function PostCard(props) {
   var name = "";
-
+  const [post, setPost] = useState(props.post);
   // deal with some posts not being linked with an existing profile, and provide a placeholder name
   if (props.post.userId === "[deleted]") {
     name = "[deleted]";
   } else {
     name = getUser(props.post.userId).name;
   }
+
+  const [showEdit, setShowEdit] = useState(false);
+  
+  const toggleEdit = () => {
+    // toggle the edit state
+    setShowEdit((current) => !current);
+    props.setAltered(true)
+  };
 
   return (
     <Card>
@@ -35,10 +45,9 @@ function PostCard(props) {
         <div>
           {props.allowDelete && (
             <span className="postButton">
+              <PostCreator show={showEdit} toggle={toggleEdit} fields={post} setFields={setPost} editing={true}/>
               <Button size="sm" variant="info" onClick={() => {
-                props.post.content = "Edited wwawdwadadwadwadawdwadwadwadawdwadawdwawwwhaha"
-                updatePost(props.post)
-                props.setAltered(true)
+                toggleEdit()
               }}>
                 <PencilSquare /> Edit
               </Button>{" "}

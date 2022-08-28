@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import AnimatedAlert from "./AnimatedAlert";
 import { insertPost } from "../data/PostRepository";
 import UserContext from "../contexts/UserContext";
+import { updatePost } from "../data/PostRepository";
 
 function PostCreator(props) {
   const { currentUser } = useContext(UserContext);
@@ -48,7 +49,12 @@ function PostCreator(props) {
       props.fields.content.length <= 250 &&
       imageOK
     ) {
-      insertPost(props.fields, currentUser);
+      if(props.editing){
+        updatePost(props.fields);
+      } else {
+        insertPost(props.fields, currentUser);
+      }
+
       props.toggle(); // close modal
       setMessage("");
     } else {
@@ -68,7 +74,7 @@ function PostCreator(props) {
   return (
     <Modal show={props.show} onHide={props.toggle}>
       <Modal.Header closeButton>
-        <Modal.Title>New Post</Modal.Title>
+        <Modal.Title>{props.editing ? "Edit Post" : "New Post"}</Modal.Title>
       </Modal.Header>
       <AnimatedAlert
         variant="danger"

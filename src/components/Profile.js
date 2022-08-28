@@ -9,6 +9,7 @@ import ProfileDeleter from "./ProfileDeleter";
 import { getAllPostsByUser } from "../data/PostRepository";
 import PostCard from "./PostCard";
 import UserContext from "../contexts/UserContext";
+import PostCreator from "./PostCreator";
 
 function Profile() {
   const users = getUsers();
@@ -29,7 +30,7 @@ function Profile() {
   // the field is stored here to make it easier to clear the values when the modal is closed,
   // either by closing it manually or when an update is successful
 
-  const [showModal, setShowModal] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
 
   const toggleEdit = () => {
@@ -37,7 +38,7 @@ function Profile() {
     // it also clears the fields in case the user opens it again
     fields.name = "";
     fields.password = "";
-    setShowModal((current) => !current);
+    setShowEdit((current) => !current);
   };
 
   const toggleDelete = () => {
@@ -54,9 +55,10 @@ function Profile() {
 
   return (
     <div>
+      
       <div className="profile">
         <ProfileEditor
-          show={showModal}
+          show={showEdit}
           toggle={toggleEdit}
           fields={fields}
           setFields={setFields}
