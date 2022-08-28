@@ -1,7 +1,6 @@
 import "./css/Profile.css";
 import Button from "react-bootstrap/Button";
 import { getUsers } from "../data/Repository";
-
 import { PencilSquare, PersonCircle, Trash } from "react-bootstrap-icons";
 import { useContext, useEffect, useState } from "react";
 import ProfileEditor from "./ProfileEditor";
@@ -9,7 +8,7 @@ import ProfileDeleter from "./ProfileDeleter";
 import { getAllPostsByUser } from "../data/PostRepository";
 import PostCard from "./PostCard";
 import UserContext from "../contexts/UserContext";
-import PostCreator from "./PostCreator";
+
 
 function Profile() {
   const users = getUsers();

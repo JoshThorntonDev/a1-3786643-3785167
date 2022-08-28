@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import "./css/Posts.css";
 import { PencilSquare } from "react-bootstrap-icons";
-import { deletePost, updatePost } from "../data/PostRepository";
+import { deletePost } from "../data/PostRepository";
 import { getUser } from "../data/Repository";
 import { useState } from "react";
 import PostCreator from "./PostCreator";
@@ -18,11 +18,11 @@ function PostCard(props) {
   }
 
   const [showEdit, setShowEdit] = useState(false);
-  
+
   const toggleEdit = () => {
     // toggle the edit state
     setShowEdit((current) => !current);
-    props.setAltered(true)
+    props.setAltered(true);
   };
 
   return (
@@ -34,7 +34,11 @@ function PostCard(props) {
 
           <img
             variant="bottom"
-            alt={props.post.image === "[deleted]" ? "This image has been deleted" : "Posted by a user"}
+            alt={
+              props.post.image === "[deleted]"
+                ? "This image has been deleted"
+                : "Posted by a user"
+            }
             src={props.post.image}
           />
         </Card.Body>
@@ -45,10 +49,20 @@ function PostCard(props) {
         <div>
           {props.allowDelete && (
             <span className="postButton">
-              <PostCreator show={showEdit} toggle={toggleEdit} fields={post} setFields={setPost} editing={true}/>
-              <Button size="sm" variant="info" onClick={() => {
-                toggleEdit()
-              }}>
+              <PostCreator
+                show={showEdit}
+                toggle={toggleEdit}
+                fields={post}
+                setFields={setPost}
+                editing={true}
+              />
+              <Button
+                size="sm"
+                variant="info"
+                onClick={() => {
+                  toggleEdit();
+                }}
+              >
                 <PencilSquare /> Edit
               </Button>{" "}
               <Button
