@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
 
 function Register() {
-  const {login} = useContext(UserContext)
+  const { login } = useContext(UserContext);
 
   const [user, setUser] = useState({
     name: "",
@@ -60,7 +60,8 @@ function Register() {
     //Log the user in and redirect them
 
     setShow(true);
-    setTimeout(() => { // this timeout is just to pretend that we have to wait for a db response
+    setTimeout(() => {
+      // this timeout is just to pretend that we have to wait for a db response
       login(user.email);
       navigate("/profile", { replace: true });
     }, 1500);

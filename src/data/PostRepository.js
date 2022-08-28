@@ -42,7 +42,8 @@ function insertPost(post, currentUser) {
   }
 }
 
-function getPost(id) { //return a single post
+function getPost(id) {
+  //return a single post
   const posts = getPosts();
 
   return posts[id];
@@ -58,7 +59,8 @@ function deletePost(id) {
   setPosts(posts);
 }
 
-function getAllPostsByUser(userid) { // returns all posts made by userid, except ones that have been marked as deleted
+function getAllPostsByUser(userid) {
+  // returns all posts made by userid, except ones that have been marked as deleted
   var postids = getUser(userid).posts;
   var posts = [];
 

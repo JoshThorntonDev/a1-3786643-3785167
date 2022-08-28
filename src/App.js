@@ -12,7 +12,9 @@ import UserContext from "./contexts/UserContext";
 import { useState } from "react";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(localStorage.getItem('currentUser'));
+  const [currentUser, setCurrentUser] = useState(
+    localStorage.getItem("currentUser")
+  );
 
   const login = (id) => {
     setCurrentUser(id);
@@ -27,11 +29,11 @@ function App() {
     <div className="contain">
       <UserContext.Provider value={{ currentUser, login, logout }}>
         <BrowserRouter>
-          <Header/>
+          <Header />
           <div className="content">
             <Routes>
-              <Route path="/login" element={<Login/>} />
-              <Route path="/register" element={<Register/>} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/posts" element={<Posts />} />
               <Route path="*" element={<Landing />} />

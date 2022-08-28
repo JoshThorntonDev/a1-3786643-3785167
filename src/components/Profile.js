@@ -12,7 +12,7 @@ import UserContext from "../contexts/UserContext";
 
 function Profile() {
   const users = getUsers();
-  const {currentUser} = useContext(UserContext)
+  const { currentUser } = useContext(UserContext);
 
   const posts = getAllPostsByUser(currentUser);
   // this is used to get all the posts and display them on this profile page

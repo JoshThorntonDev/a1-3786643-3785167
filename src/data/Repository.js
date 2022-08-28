@@ -64,7 +64,6 @@ function removeUser(key) {
   for (let i = 0; i < users[key].posts.length; i++) {
     // mark all posts by the user as deleted
     deletePost(users[key].posts[i]);
-
   }
 
   delete users[key];

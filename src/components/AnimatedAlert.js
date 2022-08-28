@@ -2,11 +2,14 @@ import Alert from "react-bootstrap/Alert";
 import Collapse from "react-bootstrap/Collapse";
 
 function AnimatedAlert(props) {
-
   return (
     <Collapse in={props.display}>
       <div>
-        <Alert variant={props.variant} onClose={() => props.setDisplay(false)} dismissible>
+        <Alert
+          variant={props.variant}
+          onClose={() => props.setDisplay(false)}
+          dismissible
+        >
           {props.message}
         </Alert>
       </div>

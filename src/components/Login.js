@@ -21,8 +21,8 @@ function Login() {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const users = getUsers();
-  
-  const {login} = useContext(UserContext)
+
+  const { login } = useContext(UserContext);
 
   const passwordRef = useRef(null);
   const emailRef = useRef(null);

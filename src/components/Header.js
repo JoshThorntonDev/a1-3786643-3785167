@@ -8,8 +8,7 @@ import UserContext from "../contexts/UserContext";
 
 function Header() {
   const navigate = useNavigate();
-  const {currentUser, logout} = useContext(UserContext)
-
+  const { currentUser, logout } = useContext(UserContext);
 
   return (
     <Navbar className="headerNav" bg="dark" variant="dark">

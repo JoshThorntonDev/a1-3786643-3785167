@@ -17,7 +17,7 @@ import UserContext from "../contexts/UserContext";
 // setFields
 function ProfileEditor(props) {
   const users = getUsers();
-  const {currentUser} = useContext(UserContext)
+  const { currentUser } = useContext(UserContext);
   // get users and current users so we dont have to have ugly things like props.users[props.currentUser].password
 
   const handleInputChange = (event) => {

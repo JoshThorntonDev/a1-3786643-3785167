@@ -10,7 +10,7 @@ import PostCard from "./PostCard";
 import UserContext from "../contexts/UserContext";
 
 function Posts() {
-  const {currentUser} = useContext(UserContext)
+  const { currentUser } = useContext(UserContext);
 
   const posts = getPosts();
 
@@ -58,14 +58,7 @@ function Posts() {
       {Object.keys(posts).map((id) => {
         const post = posts[id];
 
-        return (
-          <PostCard
-            key={id}
-            id={id}
-            post={post}
-            allowDelete={false}
-          />
-        );
+        return <PostCard key={id} id={id} post={post} allowDelete={false} />;
       })}
     </div>
   );

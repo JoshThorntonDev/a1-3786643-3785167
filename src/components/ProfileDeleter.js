@@ -18,7 +18,7 @@ import UserContext from "../contexts/UserContext";
 // setFields
 function ProfileDeleter(props) {
   const users = getUsers();
-  const currentUser = useContext(UserContext)
+  const currentUser = useContext(UserContext);
   // get users and current user so we dont have to have ugly things like props.users[props.currentUser].password
 
   const passwordRef = useRef(null);

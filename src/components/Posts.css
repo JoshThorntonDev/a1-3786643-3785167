@@ -10,7 +10,7 @@
   max-width: 50vh;
 
   max-height: 30vh;
-    
+
   /* this forces the images to always keep their aspect ratio regardless of how their sizes are changed */
   object-fit: contain;
 }
