@@ -28,16 +28,13 @@ function Posts() {
 
   const toggleModal = () => {
     // toggle the edit state
-    // it also clears the field in case the user opens it again
-    post.content = "";
 
+    post.content = "";
+    post.postId = ""
     post.image = "";
 
     setShowModal((current) => !current);
   };
-  // return (
-  //   <PostList posts={posts}></PostList>
-  // )
 
   return (
     <div>
