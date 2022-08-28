@@ -14,7 +14,7 @@ import UserContext from "../contexts/UserContext";
 
 function Register() {
   const { login } = useContext(UserContext);
-
+  const { NAME_LENGTH } = useContext(UserContext);
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -37,8 +37,8 @@ function Register() {
 
     e.preventDefault(); //prevent form from submitting automatically
 
-    //Call validate function, store error message as string
-    let validateMessage = validate(user);
+    //Call validate function, store error message as string, give it NAME_LENGTH because we can't use context in it
+    let validateMessage = validate(user, NAME_LENGTH);
 
     //if there's an error message, set Error to true,
     //save the message and return
@@ -89,10 +89,10 @@ function Register() {
           placeholder="name"
           value={user.name}
           onChange={handleInputChange}
-          maxLength={20}
+          maxLength={NAME_LENGTH}
         />
         <Form.Text muted className="float-end">
-          {user.name.trim().length} / 20
+          {user.name.trim().length} / {NAME_LENGTH}
           {/* .trim() prevents the counter increasing when the text starts and ends with whitespace */}
         </Form.Text>
       </FloatingLabel>

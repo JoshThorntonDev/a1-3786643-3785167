@@ -1,4 +1,4 @@
-function validate(user) {
+function validate(user, NAME_LENGTH) {
   //Check that username is present
   let error = "";
 
@@ -7,8 +7,8 @@ function validate(user) {
     return error;
   }
 
-  if (user.name.trim().length > 20) {
-    error = "User names cannot exceed 20 characters";
+  if (user.name.trim().length > NAME_LENGTH) {
+    error = "User names cannot exceed " + NAME_LENGTH + " characters";
     return error;
   }
 
@@ -37,7 +37,8 @@ function validate(user) {
   if (
     !/(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[a-zA-Z])(?=.{8,})/.test(user.password)
   ) {
-    error = "Password must be at least 8 characters long and contain at least one letter, number, and symbol (!, @, #. $, %, ^, &, *, -)";
+    error =
+      "Password must be at least 8 characters long and contain at least one letter, number, and symbol (!, @, #. $, %, ^, &, *, -)";
     return error;
   }
   return error;

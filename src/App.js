@@ -24,10 +24,11 @@ function App() {
     setCurrentUser(null);
     localStorage.removeItem("currentUser");
   };
+  const NAME_LENGTH = 20; // max length for user names
 
   return (
     <div className="contain">
-      <UserContext.Provider value={{ currentUser, login, logout }}>
+      <UserContext.Provider value={{ currentUser, login, logout, NAME_LENGTH }}>
         <BrowserRouter>
           <Header />
           <div className="content">

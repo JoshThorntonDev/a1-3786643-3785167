@@ -17,7 +17,7 @@ import UserContext from "../contexts/UserContext";
 // setFields
 function ProfileEditor(props) {
   const users = getUsers();
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, NAME_LENGTH } = useContext(UserContext);
   // get users and current users so we dont have to have ugly things like props.users[props.currentUser].password
 
   const handleInputChange = (event) => {
@@ -38,7 +38,7 @@ function ProfileEditor(props) {
     setError(false); // reset error state
     event.preventDefault(); // prevent form from submitting
 
-    if (props.fields.name.trim() !== "" && props.fields.name.length <= 20) {
+    if (props.fields.name.trim() !== "" && props.fields.name.length <= NAME_LENGTH) {
       //check if password is correct
       if (props.fields.password === users[currentUser].password) {
         // ensure name is valid
@@ -78,14 +78,14 @@ function ProfileEditor(props) {
               type="text"
               placeholder={users[currentUser].name}
               autoFocus
-              maxLength={20}
+              maxLength={NAME_LENGTH}
               value={props.fields.name}
               onChange={handleInputChange}
               required
               ref={nameRef}
             />
             <Form.Text muted className="float-end">
-              {props.fields.name.trim().length} / 20
+              {props.fields.name.trim().length} / {NAME_LENGTH}
               {/* .trim() prevents the counter increasing when the post starts and ends with whitespace */}
             </Form.Text>
           </Form.Group>
