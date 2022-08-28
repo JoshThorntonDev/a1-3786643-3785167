@@ -63,7 +63,12 @@ function deletePost(id) {
 
   posts[id].content = "[deleted]";
   posts[id].userId = "[deleted]";
-  posts[id].image = "[deleted]";
+
+  if (posts[id].image) { // if the post had an image, mark it as deleted, otherwise do nothing
+    posts[id].image = "[deleted]";
+  }
+
+
   setPosts(posts);
 }
 
