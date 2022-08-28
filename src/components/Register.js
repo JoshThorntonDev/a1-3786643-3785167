@@ -89,8 +89,14 @@ function Register() {
           placeholder="name"
           value={user.name}
           onChange={handleInputChange}
+          maxLength={20}
         />
+        <Form.Text muted className="float-end">
+          {user.name.trim().length} / 20
+          {/* .trim() prevents the counter increasing when the text starts and ends with whitespace */}
+        </Form.Text>
       </FloatingLabel>
+      <br />
       <FloatingLabel label="Email" className="mb-3">
         <Form.Control
           type="email"

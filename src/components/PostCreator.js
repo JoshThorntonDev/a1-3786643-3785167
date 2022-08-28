@@ -8,6 +8,8 @@ import { insertPost } from "../data/PostRepository";
 import UserContext from "../contexts/UserContext";
 import { updatePost } from "../data/PostRepository";
 
+// this component can create and edit posts. By default, it will only create, but setting the prop 'editing' to true
+// will put it in editing mode
 function PostCreator(props) {
   const { currentUser } = useContext(UserContext);
   const inputRef = useRef(null);
@@ -49,10 +51,13 @@ function PostCreator(props) {
       props.fields.content.length <= 250 &&
       imageOK
     ) {
-      if(props.editing){
+      if (props.editing) {
+        // are we updating a post or making a new one?
         updatePost(props.fields);
       } else {
         insertPost(props.fields, currentUser);
+        // currentUser is used to add the new post id to the user, allowing us
+        // to easily find it again
       }
 
       props.toggle(); // close modal
