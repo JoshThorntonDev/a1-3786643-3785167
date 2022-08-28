@@ -34,14 +34,18 @@ function setUsers(users) {
 function insertUser(user) {
   //Retrieve users, add new users to the list, and call setUsers
   const users = getUsers();
+  user = trimSpaces(user);
 
   users[user.email] = user; // currently, email is primary key, could be a uuid
+   
+  
 
   setUsers(users);
 }
 
 function updateUser(user) {
   const users = getUsers();
+  user = trimSpaces(user);
   user.posts = users[user.email].posts // copy post ids to new user
 
   users[user.email] = user;
@@ -71,6 +75,13 @@ function removeUser(key) {
 
   //Set users again after user has been removed
   setUsers(users);
+}
+
+
+function trimSpaces(user) {
+  user.name = user.name.trim()
+  user.email = user.email.trim()
+  return user
 }
 
 export {
