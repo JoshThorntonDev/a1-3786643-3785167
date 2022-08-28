@@ -18,7 +18,7 @@ import UserContext from "../contexts/UserContext";
 // setFields
 function ProfileDeleter(props) {
   const users = getUsers();
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, logout } = useContext(UserContext);
   // get users and current user so we dont have to have ugly things like props.users[props.currentUser].password
 
   const passwordRef = useRef(null);
@@ -47,12 +47,13 @@ function ProfileDeleter(props) {
       //if password is correct, delete the user from local storage,
       // log them out, and return to home page
       removeUser(currentUser);
-      localStorage.removeItem("currentUser");
+      
 
       //show confirmation message before redirecting
       setShow(true);
       setMessage("Account deleted successfully");
       setTimeout(() => {
+        logout()
         navigate("/", { replace: true });
       }, 1500);
     } else {
