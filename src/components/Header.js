@@ -41,7 +41,7 @@ function Header() {
                 variant="primary"
                 onClick={() => {
                   navigate("/profile", {
-                    replace: true,
+                    replace: false,
                   });
                 }}
               >
@@ -68,7 +68,7 @@ function Header() {
                 variant="primary"
                 onClick={() => {
                   navigate("/login", {
-                    replace: true,
+                    replace: false,
                   });
                 }}
               >
@@ -78,7 +78,7 @@ function Header() {
                 variant="primary"
                 onClick={() => {
                   navigate("/register", {
-                    replace: true,
+                    replace: false,
                   });
                 }}
               >

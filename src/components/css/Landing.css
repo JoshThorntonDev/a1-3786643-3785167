@@ -4,9 +4,17 @@
 }
 
 .carousel {
-  width: 80%; /* the size of images used changes what this value needs to be */
+  width: 50%; /* the size of images used changes what this value needs to be */
 }
 
 .landing {
   flex-grow: 1;
 }
+
+.landingButton button {
+
+  margin-right: 5px;
+  margin-left: 5px;
+  min-width: 7em;
+}
+
