@@ -1,15 +1,16 @@
 import { getPosts } from "../data/PostRepository";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Posts.css";
 
 import PostCreator from "./PostCreator";
 import { PlusCircleFill } from "react-bootstrap-icons";
 
 import PostCard from "./PostCard";
+import UserContext from "../contexts/UserContext";
 
 function Posts() {
-  const currentUser = localStorage.getItem("currentUser");
+  const {currentUser} = useContext(UserContext)
 
   const posts = getPosts();
 

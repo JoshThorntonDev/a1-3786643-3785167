@@ -1,10 +1,11 @@
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { getUsers, removeUser } from "../data/Repository";
 import Button from "react-bootstrap/Button";
 import AnimatedAlert from "./AnimatedAlert";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../contexts/UserContext";
 
 //renders a modal that allows the user to delete their account
 // similar to the ProfileEditor function, but only takes an input of confirmation password
@@ -17,8 +18,8 @@ import { useNavigate } from "react-router-dom";
 // setFields
 function ProfileDeleter(props) {
   const users = getUsers();
-  const currentUser = localStorage.getItem("currentUser");
-  // get users and current users so we dont have to have ugly things like props.users[props.currentUser].password
+  const currentUser = useContext(UserContext)
+  // get users and current user so we dont have to have ugly things like props.users[props.currentUser].password
 
   const passwordRef = useRef(null);
 

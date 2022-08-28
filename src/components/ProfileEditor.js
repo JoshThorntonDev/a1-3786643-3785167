@@ -1,10 +1,11 @@
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { updateUser, getUsers } from "../data/Repository";
 import { CheckCircleFill } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import AnimatedAlert from "./AnimatedAlert";
+import UserContext from "../contexts/UserContext";
 
 // this function renders a modal containing a form that can edit user information
 // currently, it supports changing the name, and can be updated to also edit email and password if required
@@ -16,7 +17,7 @@ import AnimatedAlert from "./AnimatedAlert";
 // setFields
 function ProfileEditor(props) {
   const users = getUsers();
-  const currentUser = localStorage.getItem("currentUser");
+  const {currentUser} = useContext(UserContext)
   // get users and current users so we dont have to have ugly things like props.users[props.currentUser].password
 
   const handleInputChange = (event) => {

@@ -3,15 +3,16 @@ import Button from "react-bootstrap/Button";
 import { getUsers } from "../data/Repository";
 
 import { PencilSquare, PersonCircle, Trash } from "react-bootstrap-icons";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProfileEditor from "./ProfileEditor";
 import ProfileDeleter from "./ProfileDeleter";
 import { getAllPostsByUser } from "../data/PostRepository";
 import PostCard from "./PostCard";
+import UserContext from "../contexts/UserContext";
 
 function Profile() {
   const users = getUsers();
-  const currentUser = localStorage.getItem("currentUser");
+  const {currentUser} = useContext(UserContext)
 
   const posts = getAllPostsByUser(currentUser);
   // this is used to get all the posts and display them on this profile page

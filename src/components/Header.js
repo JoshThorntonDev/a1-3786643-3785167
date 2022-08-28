@@ -3,10 +3,13 @@ import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../contexts/UserContext";
 
-function Header({ logout }) {
+function Header() {
   const navigate = useNavigate();
-  const currentUser = localStorage.getItem("currentUser");
+  const {currentUser, logout} = useContext(UserContext)
+
 
   return (
     <Navbar className="headerNav" bg="dark" variant="dark">

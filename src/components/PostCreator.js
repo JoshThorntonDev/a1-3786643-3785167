@@ -1,13 +1,14 @@
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { CheckCircleFill } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import AnimatedAlert from "./AnimatedAlert";
 import { insertPost } from "../data/PostRepository";
+import UserContext from "../contexts/UserContext";
 
 function PostCreator(props) {
-  const currentUser = localStorage.getItem("currentUser");
+  const {currentUser} =  useContext(UserContext);
   const inputRef = useRef(null);
   const imageRef = useRef(null);
 

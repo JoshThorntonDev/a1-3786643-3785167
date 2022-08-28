@@ -8,33 +8,38 @@ import Register from "./components/Register";
 import Profile from "./components/Profile";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Posts from "./components/Posts";
+import UserContext from "./contexts/UserContext";
+import { useState } from "react";
 
 function App() {
-  const login = (email) => {
-    localStorage.setItem("currentUser", email);
+  const [currentUser, setCurrentUser] = useState(localStorage.getItem('currentUser'));
+
+  const login = (id) => {
+    setCurrentUser(id);
+    localStorage.setItem("currentUser", id);
   };
   const logout = () => {
+    setCurrentUser(null);
     localStorage.removeItem("currentUser");
   };
 
   return (
     <div className="contain">
-    <BrowserRouter>
-
-        <Header logout={logout} />
-        <div className="content">
-        <Routes>
-          <Route path="/login" element={<Login login={login} />} />
-          <Route path="/register" element={<Register login={login} />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/posts" element={<Posts />} />
-          <Route path="*" element={<Landing />} />
-        </Routes>
-        </div>
-        <Footer />
-
-    </BrowserRouter>
-
+      <UserContext.Provider value={{ currentUser, login, logout }}>
+        <BrowserRouter>
+          <Header/>
+          <div className="content">
+            <Routes>
+              <Route path="/login" element={<Login/>} />
+              <Route path="/register" element={<Register/>} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/posts" element={<Posts />} />
+              <Route path="*" element={<Landing />} />
+            </Routes>
+          </div>
+          <Footer />
+        </BrowserRouter>
+      </UserContext.Provider>
     </div>
   );
 }

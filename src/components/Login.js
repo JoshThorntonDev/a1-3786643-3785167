@@ -10,16 +10,19 @@ import AnimatedAlert from "./AnimatedAlert";
 import { getUsers } from "../data/Repository";
 
 // react components for functionality
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../contexts/UserContext";
 
-function Login({ login }) {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const users = getUsers();
+  
+  const {login} = useContext(UserContext)
 
   const passwordRef = useRef(null);
   const emailRef = useRef(null);

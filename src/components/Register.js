@@ -8,10 +8,13 @@ import { insertUser } from "../data/Repository.js";
 import { validate } from "./RegisterValidation.js";
 
 //react components
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../contexts/UserContext";
 
-function Register({ login }) {
+function Register() {
+  const {login} = useContext(UserContext)
+
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -57,7 +60,7 @@ function Register({ login }) {
     //Log the user in and redirect them
 
     setShow(true);
-    setTimeout(() => {
+    setTimeout(() => { // this timeout is just to pretend that we have to wait for a db response
       login(user.email);
       navigate("/profile", { replace: true });
     }, 1500);
